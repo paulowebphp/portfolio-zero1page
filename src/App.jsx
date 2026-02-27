@@ -2,6 +2,7 @@ import React from 'react';
 import ProjectCard from './components/ProjectCard';
 import projectData from './data/projects.json';
 import conceptualData from './data/conceptual.json';
+import fullstackData from './data/fullstack.json';
 import { Github, Mail, Linkedin } from 'lucide-react';
 
 function App() {
@@ -50,6 +51,29 @@ function App() {
                 <img src={item.image} alt={item.title} loading="lazy" />
                 <div className="image-overlay">
                   <div className="view-badge">Conceitual</div>
+                </div>
+              </div>
+              <div className="item-content">
+                <h4 className="item-title">{item.title}</h4>
+                <p className="item-description">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="section-header fullstack-header">
+          <h3>Projetos de <span>Programação</span></h3>
+          <p className="section-subtitle">Full Stack</p>
+          <div className="divider"></div>
+        </div>
+
+        <div className="fullstack-grid">
+          {fullstackData.map(item => (
+            <div key={item.id} className="fullstack-item">
+              <div className="image-wrapper shadow-premium">
+                <img src={item.image} alt={item.title} loading="lazy" />
+                <div className="image-overlay">
+                  <div className="view-badge">Software</div>
                 </div>
               </div>
               <div className="item-content">

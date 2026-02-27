@@ -300,6 +300,33 @@ body {
   letter-spacing: 1px;
 }
 
+/* Full Stack Projects */
+.fullstack-header {
+  margin-top: 100px;
+}
+
+.fullstack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  margin-bottom: var(--section-gap);
+}
+
+.fullstack-item {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.fullstack-item .image-wrapper {
+  aspect-ratio: 16/9;
+}
+
+.fullstack-item img {
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Footer */
 .footer {
   padding: 80px 0 40px;
