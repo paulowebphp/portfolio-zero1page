@@ -10,5 +10,35 @@
         "title": "Exemplo de site para advocacia previdenciária empresarial",
         "image": "/projects/chrome_VMY8t31tZV.jpg",
         "description": "Site demonstrativo para escritórios especializados em direito previdenciário empresarial — mostrando como apresentar serviços de gestão de benefícios, planejamento previdenciário e defesa de empresas perante o INSS de forma profissional e estratégica."
+    },
+    {
+        "id": "advocacia-tributaria",
+        "title": "Exemplo de site para advocacia tributária",
+        "image": "/projects/msedge_ECzuNYy2dW.jpg",
+        "description": "Site demonstrativo para escritórios especializados em direito tributário — mostrando como apresentar serviços de planejamento fiscal, recuperação de créditos, defesa em autuações e consultoria tributária com credibilidade e clareza para atrair empresas e empreendedores."
+    },
+    {
+        "id": "advocacia-familia",
+        "title": "Exemplo de site para advogada especialista em direito de família",
+        "image": "/projects/chrome_IHED6iNBHn.jpg",
+        "description": "Site demonstrativo para advogadas especializadas em direito de família — mostrando como apresentar serviços de divórcio, guarda, pensão alimentícia e inventário com acolhimento, profissionalismo e humanidade para conquistar a confiança de quem mais precisa de apoio."
+    },
+    {
+        "id": "advocacia-patrimonial",
+        "title": "Exemplo de site para advocacia em direito patrimonial",
+        "image": "/projects/chrome_ktrOaWZHSD.jpg",
+        "description": "Site demonstrativo para escritórios especializados em direito patrimonial — mostrando como apresentar serviços de proteção de bens, planejamento sucessório, holding familiar e gestão de patrimônio com autoridade e sofisticação para atrair clientes de alto perfil."
+    },
+    {
+        "id": "portal-eventos",
+        "title": "Exemplo de site institucional para portal de eventos",
+        "image": "/projects/chrome_jntT4cYRTD.jpg",
+        "description": "Site demonstrativo para portais de eventos — mostrando como apresentar agenda, venda de ingressos, atração de patrocinadores e divulgação de experiências culturais, corporativas e de entretenimento em uma plataforma moderna e visualmente impactante."
+    },
+    {
+        "id": "marcenaria-premium",
+        "title": "Exemplo de site para marcenaria de alto padrão",
+        "image": "/projects/firefox_K86ObY1fL3.jpg",
+        "description": "Site demonstrativo para marcenarias premium — mostrando como apresentar projetos exclusivos de móveis sob medida, acabamentos sofisticados e portfólio visual que transmite excelência artesanal e conquista clientes que valorizam qualidade acima do preço."
     }
 ]
