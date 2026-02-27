@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ProjectCard from './components/ProjectCard';
 import projectData from './data/projects.json';
 import conceptualData from './data/conceptual.json';
@@ -7,6 +7,48 @@ import pricingData from './data/pricing.json';
 import { Github, Mail, Linkedin, Clock } from 'lucide-react';
 
 function App() {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 7,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  useEffect(() => {
+    // Check if there's already an expiration date in localStorage
+    let expirationDate = localStorage.getItem('proposalExpiration');
+
+    if (!expirationDate) {
+      // Set expiration to 7 days from now
+      const now = new Date();
+      const sevenDaysLater = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+      expirationDate = sevenDaysLater.toISOString();
+      localStorage.setItem('proposalExpiration', expirationDate);
+    }
+
+    const targetDate = new Date(expirationDate).getTime();
+
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        clearInterval(timer);
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        return;
+      }
+
+      setTimeLeft({
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000)
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="portfolio-container">
       <nav className="navbar">
@@ -109,7 +151,9 @@ function App() {
           ))}
           <div className="pricing-footer-note">
             <Clock size={32} />
-            <p>Essa proposta comercial é válida por 7 dias, tendo em vista a exclusividade do nicho em âmbito nacional</p>
+            <p>
+              Esta proposta expira em: <span>{timeLeft.days}d {timeLeft.hours.toString().padStart(2, '0')}h {timeLeft.minutes.toString().padStart(2, '0')}m {timeLeft.seconds.toString().padStart(2, '0')}s</span> — Exclusividade de nicho garantida no período.
+            </p>
           </div>
         </div>
       </main>

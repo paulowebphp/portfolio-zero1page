@@ -469,10 +469,21 @@ body {
   gap: 15px;
   max-width: fit-content;
   color: var(--text-primary);
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 600;
   letter-spacing: 0.01em;
   text-align: center;
+}
+
+.pricing-footer-note span {
+  color: #ff4d4d;
+  font-family: monospace;
+  font-weight: 800;
+  font-size: 1.25rem;
+  background: rgba(255, 77, 77, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin: 0 4px;
 }
 
 .pricing-footer-note p {
