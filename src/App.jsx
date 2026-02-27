@@ -97,7 +97,7 @@ function App() {
               <div className="pricing-content">
                 {item.subtitle && <p className="pricing-subtitle-tag">{item.subtitle}</p>}
                 <h4 className="pricing-title">{item.title}</h4>
-                {item.isHighlight && (
+                {item.price && (
                   <div className="highlight-values">
                     <p className="main-price">{item.price}</p>
                     <p className="special-price">{item.specialPrice}</p>

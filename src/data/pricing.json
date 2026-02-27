@@ -17,7 +17,7 @@
         "id": "rental",
         "title": "Modelo de Aluguel por Performance",
         "subtitle": "Foco em ROI",
-        "isHighlight": true,
+        "isHighlight": false,
         "price": "R$ 2K a 15K /mês",
         "description": "Modelo de investimento ajustado ao desempenho real da operação. A fórmula (Ticket Médio x Leads Fechados) / 6 permite que o custo acompanhe o crescimento do faturamento, mantendo previsibilidade financeira e alinhamento entre tecnologia e resultado."
     },
