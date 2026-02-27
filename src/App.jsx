@@ -107,6 +107,7 @@ function App() {
               </div>
             </div>
           ))}
+          <p className="pricing-footer-note">Essa proposta comercial é válida por 7 dias, tendo em vista a exclusividade do nicho em âmbito nacional</p>
         </div>
       </main>
 

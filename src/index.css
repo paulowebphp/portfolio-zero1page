@@ -437,6 +437,17 @@ body {
   }
 }
 
+.pricing-footer-note {
+  margin-top: 40px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  opacity: 0.7;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
 /* Footer */
 .footer {
   padding: 80px 0 40px;
