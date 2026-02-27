@@ -38,7 +38,7 @@ function App() {
       </main>
 
       <footer className="footer">
-        <p>© {new Date().getFullYear()} - Criado com React & Vite</p>
+        <p>© {new Date().getFullYear()} Zero 1 Page - Todos os Direitos Reservados</p>
       </footer>
     </div>
   );

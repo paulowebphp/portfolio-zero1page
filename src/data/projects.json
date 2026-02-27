@@ -43,5 +43,74 @@
                 "description": "Relatório de desempenho no Google Search Console referente aos últimos 3 meses do site Servidio Advogado. O painel mostra 66 cliques e 18,3 mil impressões, indicando crescimento recente de visibilidade orgânica."
             }
         ]
+    },
+    {
+        "id": "quedeliciadecozinha",
+        "title": "QueDeliciaDeCozinha",
+        "tags": [
+            "Cozinha",
+            "Afiliados",
+            "SEO",
+            "Google"
+        ],
+        "intro": "Projeto de Afiliados no Nicho de Cozinha com Artigos na 1ª Página",
+        "items": [
+            {
+                "url": "/projects/msedge_DUda4qohJp.jpg",
+                "title": "Blog de Afiliado",
+                "description": "Projeto digital no nicho de cozinha, com foco em conteúdos informativos e comparativos sobre utensílios, eletroportáteis e itens culinários. Monetizado por meio dos programas de afiliados da Amazon e do Mercado Livre. O site gera atualmente uma média de R$ 468 por mês em comissões, com tráfego orgânico proveniente de artigos posicionados no Google."
+            },
+            {
+                "url": "/projects/08_55_57.jpg",
+                "title": "Projeto de Afiliados com Queda Recente, Mas Ainda Forte na Primeira Página",
+                "description": "Projeto que sofreu queda nos últimos meses por falta de manutenção estratégica, mas ainda mantém diversos artigos posicionados na primeira página do Google, gerando cliques recorrentes e vendas ativas. Estrutura com base sólida e alto potencial de recuperação e crescimento com otimização e atualização editorial."
+            }
+        ]
+    },
+    {
+        "id": "smartpulso",
+        "title": "SmartPulso",
+        "tags": [
+            "Smartwatch",
+            "Smartband",
+            "Afiliados",
+            "SEO"
+        ],
+        "intro": "Smart Pulso (SP) é um projeto digital focado no nicho de smartwatches e smartbands, estruturado como micro-nicho horizontal com conteúdos comparativos, reviews e artigos voltados para intenção de compra. O objetivo é ranquear termos relacionados a modelos, funcionalidades e decisões de compra, gerando monetização por meio de afiliados.",
+        "items": [
+            {
+                "url": "/projects/uGBnkkRsyR.jpg",
+                "title": "SmartPulso | Portal de Conteúdo sobre Smartwatches e Smartbands",
+                "description": "SmartPulso é um projeto digital focado no nicho de smartwatches e smartbands, estruturado como portal de conteúdo organizado por clusters temáticos. O site publica comparativos e análises voltadas para intenção de compra, respondendo dúvidas específicas do usuário e conduzindo a decisão de forma objetiva, com estrutura pensada para ranqueamento orgânico e monetização por afiliados."
+            },
+            {
+                "url": "/projects/smartpulso.jpg",
+                "title": "SmartPulso | Portal de Conteúdo com Receita Recorrente",
+                "description": "SmartPulso é um projeto digital focado em conteúdo informativo no seu nicho de atuação, estruturado para gerar tráfego orgânico por meio de artigos posicionados no Google. O site possui monetização ativa e atualmente gera uma média de R$ 198 por mês em faturamento."
+            }
+        ]
+    },
+    {
+        "id": "estereoblue",
+        "title": "Estereo Blue",
+        "tags": [
+            "Áudio",
+            "Bluetooth",
+            "Afiliados",
+            "SEO"
+        ],
+        "intro": "Estereo Blue é um projeto digital focado no nicho de equipamentos de áudio Bluetooth portátil, como caixas de som e fones sem fio. Estruturado como micro-nicho vertical, o site trabalha conteúdos comparativos e reviews voltados para intenção de compra, com foco em tráfego orgânico e monetização por meio de afiliados.",
+        "items": [
+            {
+                "url": "/projects/msedge_t8XICFupDJ.jpg",
+                "title": "Estereo Blue | Portal de Conteúdo sobre Áudio Bluetooth",
+                "description": "Página inicial do Estereo Blue, portal de conteúdo focado em caixas de som e fones Bluetooth, estruturado com artigos comparativos e reviews voltados para intenção de compra. O projeto possui monetização ativa por meio de afiliados e atualmente gera uma média de R$ 203 por mês em receita recorrente."
+            },
+            {
+                "url": "/projects/eb.jpg",
+                "title": "Estereo Blue | Desempenho Orgânico nos Últimos 12 Meses",
+                "description": "Gráfico de desempenho orgânico do Estereo Blue nos últimos 12 meses no Google Search Console, com 33,5 mil cliques, 3,14 milhões de impressões, CTR médio de 1,1% e posição média 6, demonstrando volume consistente de tráfego e presença consolidada nas buscas."
+            }
+        ]
     }
 ]
