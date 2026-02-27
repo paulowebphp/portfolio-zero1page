@@ -137,6 +137,29 @@
         ]
     },
     {
+        "id": "bqmg",
+        "title": "Banheiros Químicos MG",
+        "tags": [
+            "Locação",
+            "Eventos",
+            "Frota Própria",
+            "Minas Gerais"
+        ],
+        "intro": "BQMG é uma empresa mineira especializada no aluguel de banheiros químicos portáteis com frota própria e atendimento 24h em todo o estado de Minas Gerais. Atende obras, eventos e indústrias com uma linha completa de cabines — da Standard à Luxo — entregues com higiene, agilidade e excelência. O site transmite credibilidade e facilita o contato direto com orçamento rápido e visualização clara dos modelos disponíveis.",
+        "items": [
+            {
+                "url": "/projects/msedge_kfAIvU4FBs.jpg",
+                "title": "Banheiros Químicos com Excelência",
+                "description": "A obra não para. O evento não espera. E quando a necessidade é urgente, a BQMG está pronta — frota própria, atendimento 24h e cobertura em todo o estado. Do orçamento à entrega, tudo resolvido com agilidade e sem complicação. Porque excelência está em cada detalhe, até nos que ninguém vê."
+            },
+            {
+                "url": "/projects/msedge_Va1EDz6A4M.jpg",
+                "title": "Tecnologia, higiene e conforto para cada necessidade",
+                "description": "Cada obra tem um tamanho. Cada evento tem um perfil. Por isso a BQMG oferece modelos variados — com disponibilidade imediata — para que o cliente encontre exatamente o que precisa, sem improviso. Do canteiro ao festival, a solução certa sempre à mão."
+            }
+        ]
+    },
+    {
         "id": "redeprotecaosjc",
         "title": "Rede de Proteção em SJC",
         "tags": [
