@@ -410,15 +410,15 @@ body {
 }
 
 .main-price {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 900;
   color: #fff;
   letter-spacing: -0.04em;
-  line-height: 1;
+  line-height: 1.1;
 }
 
 .special-price {
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 800;
   background: linear-gradient(90deg, #0070f3, #00dfd8);
   -webkit-background-clip: text;
