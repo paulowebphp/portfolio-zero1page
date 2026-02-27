@@ -88,18 +88,40 @@ body {
   color: var(--accent-color);
 }
 
-.social-links {
+.header-timer {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 14px;
+  border-radius: 100px;
   display: flex;
-  gap: 20px;
-}
-
-.social-links a {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
-}
-
-.social-links a:hover {
+  align-items: center;
+  gap: 8px;
   color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.header-timer svg {
+  color: #ff4d4d;
+  filter: drop-shadow(0 0 4px rgba(255, 77, 77, 0.3));
+}
+
+.header-timer span {
+  color: #ff4d4d;
+  font-weight: 700;
+  font-family: monospace;
+}
+
+@media (max-width: 600px) {
+  .header-timer p {
+    font-size: 0.75rem;
+  }
+
+  .header-timer {
+    padding: 4px 10px;
+  }
 }
 
 /* Hero */

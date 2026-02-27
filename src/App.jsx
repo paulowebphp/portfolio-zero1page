@@ -51,10 +51,9 @@ function App() {
       <nav className="navbar">
         <div className="nav-content">
           <h1 className="logo">Portfolio <span>Zero1Page</span></h1>
-          <div className="social-links">
-            <a href="#"><Github size={20} /></a>
-            <a href="#"><Mail size={20} /></a>
-            <a href="#"><Linkedin size={20} /></a>
+          <div className="header-timer">
+            <Clock size={16} />
+            <p>Proposta expira em: <span>{timeLeft.days}d {timeLeft.hours.toString().padStart(2, '0')}h {timeLeft.minutes.toString().padStart(2, '0')}m {timeLeft.seconds.toString().padStart(2, '0')}s</span></p>
           </div>
         </div>
       </nav>
