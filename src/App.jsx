@@ -4,7 +4,7 @@ import projectData from './data/projects.json';
 import conceptualData from './data/conceptual.json';
 import fullstackData from './data/fullstack.json';
 import pricingData from './data/pricing.json';
-import { Github, Mail, Linkedin } from 'lucide-react';
+import { Github, Mail, Linkedin, Clock } from 'lucide-react';
 
 function App() {
   return (
@@ -107,7 +107,10 @@ function App() {
               </div>
             </div>
           ))}
-          <p className="pricing-footer-note">Essa proposta comercial é válida por 7 dias, tendo em vista a exclusividade do nicho em âmbito nacional</p>
+          <div className="pricing-footer-note">
+            <Clock size={32} />
+            <p>Essa proposta comercial é válida por 7 dias, tendo em vista a exclusividade do nicho em âmbito nacional</p>
+          </div>
         </div>
       </main>
 

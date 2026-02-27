@@ -408,6 +408,7 @@ body {
   line-height: 1.6;
   max-width: 650px;
   margin: 0 auto;
+  white-space: pre-wrap;
 }
 
 /* Highlighted Price Style */
@@ -454,14 +455,42 @@ body {
 }
 
 .pricing-footer-note {
-  margin-top: 40px;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  opacity: 0.7;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  margin: 60px auto 0;
+  padding: 16px 32px;
+  background: rgba(0, 112, 243, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 112, 243, 0.3);
+  box-shadow: 0 10px 30px -10px rgba(0, 112, 243, 0.3);
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  max-width: fit-content;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
   text-align: center;
+}
+
+.pricing-footer-note p {
+  opacity: 0.9;
+}
+
+.pricing-footer-note svg {
+  color: #ff4d4d;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 8px rgba(255, 77, 77, 0.4));
+}
+
+@media (max-width: 600px) {
+  .pricing-footer-note {
+    border-radius: 20px;
+    padding: 15px 20px;
+    line-height: 1.4;
+  }
 }
 
 /* Footer */
