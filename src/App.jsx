@@ -11,7 +11,7 @@ function App() {
     <div className="portfolio-container">
       <nav className="navbar">
         <div className="nav-content">
-          <h1 className="logo">Meu<span>Portfólio</span></h1>
+          <h1 className="logo">Portfolio <span>Zero1Page</span></h1>
           <div className="social-links">
             <a href="#"><Github size={20} /></a>
             <a href="#"><Mail size={20} /></a>
@@ -23,7 +23,7 @@ function App() {
       <header className="hero">
         <div className="hero-content">
           <h2>Transformando ideias em <span>experiências digitais</span></h2>
-          <p>Especialista em desenvolvimento web focado em performance e design.</p>
+          <p>Especialistas em desenvolvimento web focado em performance e design.</p>
         </div>
       </header>
 
