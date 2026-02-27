@@ -1,0 +1,47 @@
+[
+    {
+        "id": "tripbh",
+        "title": "TripBH",
+        "tags": [
+            "Motorhome",
+            "Aluguel",
+            "WordPress",
+            "UX/UI"
+        ],
+        "intro": "Plataforma de aluguel de motorhomes em Belo Horizonte, criada para quem quer explorar o Brasil com liberdade. Além da locação, o site oferece roteiros, dicas e informações úteis.",
+        "items": [
+            {
+                "url": "/projects/msedge_9DgpPA3E8q.jpg",
+                "title": "Tecnologia & Design",
+                "description": "Frontend próprio integrado ao WordPress, unindo design moderno com carregamento rápido e navegação fluida."
+            },
+            {
+                "url": "/projects/chrome_c54Ebk0tRS.png",
+                "title": "SEO & Performance Orgânica",
+                "description": "Painel de desempenho no Google Search Console mostrando a evolução orgânica do site nos últimos 12 meses, com destaque para 2,71 mil cliques e 80,5 mil impressões."
+            }
+        ]
+    },
+    {
+        "id": "servidio",
+        "title": "Servidio Advogado",
+        "tags": [
+            "Advocacia",
+            "Trabalhista",
+            "Conversão"
+        ],
+        "intro": "Página institucional do advogado trabalhista Rodrigo Servidio, com atuação no Rio de Janeiro e atendimento online.",
+        "items": [
+            {
+                "url": "/projects/msedge_jZUfG69imI.png",
+                "title": "Presença Digital & Conteúdo",
+                "description": "Página institucional do advogado trabalhista Rodrigo Servidio, com atuação no Rio de Janeiro e atendimento online. O site apresenta estrutura moderna, foco em conversão via WhatsApp e conteúdo informativo voltado a direitos trabalhistas, como demissão, FGTS e verbas rescisórias."
+            },
+            {
+                "url": "/projects/chrome_2PiF52prgX.jpg",
+                "title": "Relatório de Desempenho (Search Console)",
+                "description": "Relatório de desempenho no Google Search Console referente aos últimos 3 meses do site Servidio Advogado. O painel mostra 66 cliques e 18,3 mil impressões, indicando crescimento recente de visibilidade orgânica."
+            }
+        ]
+    }
+]
