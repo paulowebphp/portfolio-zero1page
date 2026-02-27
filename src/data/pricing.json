@@ -1,0 +1,20 @@
+[
+    {
+        "id": "implementation",
+        "title": "Implementação & Crédito Inteligente",
+        "subtitle": "Cronograma de 6 meses",
+        "description": "Desenvolvimento e implementação completa da estrutura. O valor investido nesta etapa se torna crédito para o aluguel futuro caso não seja totalmente utilizado — garantindo que 100% do seu capital seja convertido em resultado operacional."
+    },
+    {
+        "id": "rental",
+        "title": "Modelo de Aluguel por Performance",
+        "subtitle": "R$ 2K a 15K /mês",
+        "description": "Investimento dinâmico baseado no seu resultado real. O cálculo `(Ticket Médio x Leads) / 6` garante que o custo da tecnologia acompanhe o crescimento do seu faturamento, mantendo a operação sempre lucrativa e sustentável."
+    },
+    {
+        "id": "authority",
+        "title": "Expansão de Autoridade (Digital PR)",
+        "subtitle": "4º ao 6º mês",
+        "description": "Inserção estratégica de Digital PR para ampliação de backlinks de alta autoridade. O foco é dominar as primeiras posições do Google e consolidar sua marca como referência máxima no seu nicho de atuação."
+    }
+]

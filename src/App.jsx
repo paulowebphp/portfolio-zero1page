@@ -3,6 +3,7 @@ import ProjectCard from './components/ProjectCard';
 import projectData from './data/projects.json';
 import conceptualData from './data/conceptual.json';
 import fullstackData from './data/fullstack.json';
+import pricingData from './data/pricing.json';
 import { Github, Mail, Linkedin } from 'lucide-react';
 
 function App() {
@@ -79,6 +80,24 @@ function App() {
               <div className="item-content">
                 <h4 className="item-title">{item.title}</h4>
                 <p className="item-description">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="section-header pricing-header">
+          <h3>Investimento & <span>Estratégia</span></h3>
+          <p className="section-subtitle">Proposta Comercial</p>
+          <div className="divider"></div>
+        </div>
+
+        <div className="pricing-container">
+          {pricingData.map(item => (
+            <div key={item.id} className="pricing-card">
+              <div className="pricing-content">
+                <p className="pricing-subtitle-tag">{item.subtitle}</p>
+                <h4 className="pricing-title">{item.title}</h4>
+                <p className="pricing-description">{item.description}</p>
               </div>
             </div>
           ))}
