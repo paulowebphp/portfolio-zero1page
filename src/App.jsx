@@ -149,7 +149,7 @@ function App() {
           <div className="pricing-footer-note">
             <Clock size={32} />
             <p>
-              Esta proposta expira em: <span>{timeLeft.days}d {timeLeft.hours.toString().padStart(2, '0')}h {timeLeft.minutes.toString().padStart(2, '0')}m {timeLeft.seconds.toString().padStart(2, '0')}s</span> — Exclusividade de nicho garantida no período, em o âmbito nacional.
+              Esta proposta expira em: <span>{timeLeft.days}d {timeLeft.hours.toString().padStart(2, '0')}h {timeLeft.minutes.toString().padStart(2, '0')}m {timeLeft.seconds.toString().padStart(2, '0')}s</span> — Exclusividade de nicho garantida no período, em âmbito nacional.
             </p>
           </div>
         </div>
