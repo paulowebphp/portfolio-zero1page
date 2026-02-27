@@ -88,39 +88,39 @@ body {
   color: var(--accent-color);
 }
 
-.header-timer {
-  background: rgba(255, 255, 255, 0.05);
+.whatsapp-contact {
+  background: rgba(37, 211, 102, 0.1);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 6px 14px;
+  border: 1px solid rgba(37, 211, 102, 0.2);
+  padding: 8px 16px;
   border-radius: 100px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: var(--text-primary);
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
-.header-timer svg {
-  color: #ff4d4d;
-  filter: drop-shadow(0 0 4px rgba(255, 77, 77, 0.3));
+.whatsapp-contact:hover {
+  background: rgba(37, 211, 102, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.2);
 }
 
-.header-timer span {
-  color: #ff4d4d;
-  font-weight: 700;
-  font-family: monospace;
+.whatsapp-contact svg {
+  color: #25d366;
+  filter: drop-shadow(0 0 4px rgba(37, 211, 102, 0.3));
 }
 
 @media (max-width: 600px) {
-  .header-timer p {
+  .whatsapp-contact {
+    padding: 6px 12px;
     font-size: 0.75rem;
-  }
-
-  .header-timer {
-    padding: 4px 10px;
+    gap: 6px;
   }
 }
 
