@@ -112,5 +112,28 @@
                 "description": "Gráfico de desempenho orgânico do Estereo Blue nos últimos 12 meses no Google Search Console, com 33,5 mil cliques, 3,14 milhões de impressões, CTR médio de 1,1% e posição média 6, demonstrando volume consistente de tráfego e presença consolidada nas buscas."
             }
         ]
+    },
+    {
+        "id": "soplanosdesaude",
+        "title": "Só Planos de Saúde",
+        "tags": [
+            "Saúde",
+            "Consultoria",
+            "Cotação",
+            "WhatsApp"
+        ],
+        "intro": "Só Planos de Saúde é uma consultoria digital especializada em planos de saúde, com mais de 15 anos de atuação e mais de 50.000 clientes atendidos. O site funciona como um comparador inteligente das principais operadoras do mercado — Amil, Bradesco, Unimed, SulAmérica, NotreDame e outras — permitindo que o usuário faça uma cotação gratuita e personalizada em poucos minutos, diretamente pelo site ou via WhatsApp.",
+        "items": [
+            {
+                "url": "/projects/msedge_LgphQn2qjR.jpg",
+                "title": "Sua saúde, sem complicação",
+                "description": "Imagine chegar ao site às 22h, preocupado com a saúde da sua família, sem saber por onde começar. Em menos de 2 minutos, você preenche nome, cidade e número de pessoas — e recebe uma cotação personalizada com os melhores planos disponíveis na sua região. Sem burocracia, sem enrolação. Só o que importa: proteger quem você ama."
+            },
+            {
+                "url": "/projects/msedge_xu1E4ppmAd.jpg",
+                "title": "15 anos escolhendo o melhor pra você",
+                "description": "Não é sorte. É experiência. Com 12 operadoras parceiras e 98% de satisfação dos clientes, a Só Planos de Saúde já ajudou mais de 50 mil brasileiros a encontrar o plano certo — pagando menos do que imaginavam. Porque cuidar da saúde não pode ser um privilégio. Pode ser uma escolha inteligente."
+            }
+        ]
     }
 ]
