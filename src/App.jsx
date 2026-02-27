@@ -26,7 +26,7 @@ function App() {
 
       <main className="projects-grid">
         <div className="section-header">
-          <h3>Projetos Selecionados</h3>
+          <h3>Cases de <span>Sucesso</span></h3>
           <div className="divider"></div>
         </div>
 

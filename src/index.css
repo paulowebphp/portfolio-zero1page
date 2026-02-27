@@ -106,12 +106,55 @@ body {
   max-width: 600px;
 }
 
-/* Project Section */
+/* Section Header */
+.section-header {
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.section-header h3 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.section-header h3 span {
+  background: linear-gradient(90deg, #0070f3, #00dfd8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-header .divider {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #0070f3, #00dfd8);
+  border-radius: 2px;
+  position: relative;
+}
+
+.section-header .divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 1px;
+  background: var(--glass-border);
+  z-index: -1;
+}
+
 .project-section {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  padding-top: 80px;
+  padding-top: 100px;
   border-top: 1px solid var(--glass-border);
   margin-bottom: var(--section-gap);
 }
@@ -126,7 +169,6 @@ body {
 .project-tags {
   display: flex;
   flex-wrap: wrap;
-  /* CRITICAL FIX */
   gap: 12px;
 }
 
