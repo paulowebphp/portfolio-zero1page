@@ -1,6 +1,7 @@
 import React from 'react';
 import ProjectCard from './components/ProjectCard';
 import projectData from './data/projects.json';
+import conceptualData from './data/conceptual.json';
 import { Github, Mail, Linkedin } from 'lucide-react';
 
 function App() {
@@ -33,6 +34,29 @@ function App() {
         <div className="projects-list">
           {projectData.map(project => (
             <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+
+        <div className="section-header conceptual-header">
+          <h3>Projetos <span>Demonstrativos</span></h3>
+          <p className="section-subtitle">(Conceituais)</p>
+          <div className="divider"></div>
+        </div>
+
+        <div className="conceptual-grid">
+          {conceptualData.map(item => (
+            <div key={item.id} className="conceptual-item">
+              <div className="image-wrapper shadow-premium">
+                <img src={item.image} alt={item.title} loading="lazy" />
+                <div className="image-overlay">
+                  <div className="view-badge">Conceitual</div>
+                </div>
+              </div>
+              <div className="item-content">
+                <h4 className="item-title">{item.title}</h4>
+                <p className="item-description">{item.description}</p>
+              </div>
+            </div>
           ))}
         </div>
       </main>

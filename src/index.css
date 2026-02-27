@@ -263,6 +263,43 @@ body {
   overflow-wrap: break-word;
 }
 
+/* Conceptual Projects */
+.conceptual-header {
+  margin-top: 100px;
+}
+
+.section-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-top: -15px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.conceptual-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px 40px;
+  margin-bottom: var(--section-gap);
+}
+
+.conceptual-item {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.view-badge {
+  background: var(--accent-color);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 /* Footer */
 .footer {
   padding: 80px 0 40px;
@@ -286,7 +323,8 @@ body {
     padding-bottom: 60px;
   }
 
-  .project-grid {
+  .project-grid,
+  .conceptual-grid {
     grid-template-columns: 1fr;
     gap: 40px;
   }

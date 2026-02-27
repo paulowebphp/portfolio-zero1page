@@ -1,0 +1,14 @@
+[
+    {
+        "id": "advocacia-previdenciaria",
+        "title": "Exemplo de site para advocacia previdenciária",
+        "image": "/projects/msedge_LjMv1buUBV.jpg",
+        "description": "Site demonstrativo desenvolvido para escritórios de direito previdenciário — mostrando como uma presença digital profissional pode apresentar serviços, gerar confiança e atrair clientes que buscam aposentadoria, BPC, pensão por morte e outros benefícios do INSS."
+    },
+    {
+        "id": "advocacia-previdenciaria-empresarial",
+        "title": "Exemplo de site para advocacia previdenciária empresarial",
+        "image": "/projects/chrome_VMY8t31tZV.jpg",
+        "description": "Site demonstrativo para escritórios especializados em direito previdenciário empresarial — mostrando como apresentar serviços de gestão de benefícios, planejamento previdenciário e defesa de empresas perante o INSS de forma profissional e estratégica."
+    }
+]
