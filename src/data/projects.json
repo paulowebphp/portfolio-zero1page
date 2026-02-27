@@ -135,5 +135,28 @@
                 "description": "Não é sorte. É experiência. Com 12 operadoras parceiras e 98% de satisfação dos clientes, a Só Planos de Saúde já ajudou mais de 50 mil brasileiros a encontrar o plano certo — pagando menos do que imaginavam. Porque cuidar da saúde não pode ser um privilégio. Pode ser uma escolha inteligente."
             }
         ]
+    },
+    {
+        "id": "redeprotecaosjc",
+        "title": "Rede de Proteção em SJC",
+        "tags": [
+            "Segurança",
+            "Residencial",
+            "Instalação",
+            "SJC"
+        ],
+        "intro": "Rede de Proteção SJC é uma empresa especializada na instalação de redes e telas de proteção em São José dos Campos e região. Atende residências, apartamentos e espaços comerciais com soluções completas para janelas, sacadas, escadas, piscinas, quadras e pets. Os produtos são fabricados em polietileno de alta densidade com tratamento anti-UV, garantindo durabilidade e resistência a qualquer clima.",
+        "items": [
+            {
+                "url": "/projects/msedge_ZCQ1n2Qpj3.jpg",
+                "title": "Proteção que você nem vê — mas sente todos os dias",
+                "description": "Era domingo à tarde. As crianças corriam pelo apartamento, a janela estava aberta, e aquela sensação de perigo passou pela cabeça como um raio. Não demorou 24 horas para o orçamento estar feito e a rede instalada. Desde então, a janela pode ficar aberta o dia todo. A Rede de Proteção SJC não muda a vista. Só muda a tranquilidade."
+            },
+            {
+                "url": "/projects/msedge_RVhJtvRYkz.jpg",
+                "title": "Diversão sem preocupação — esse é o combinado",
+                "description": "Ter piscina deveria ser sinônimo de alegria — não de ansiedade. Com a rede de proteção instalada pela equipe da SJC, você finalmente consegue relaxar enquanto as crianças e os pets aproveitam o espaço. Material resistente, instalação rápida e garantia do serviço. Porque proteger não é exagero. É amor em forma de rede."
+            }
+        ]
     }
 ]
