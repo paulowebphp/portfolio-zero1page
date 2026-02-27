@@ -24,5 +24,19 @@
         "title": "Expansão de Autoridade (Digital PR)",
         "subtitle": "4º ao 6º mês",
         "description": "Estratégia estruturada de Digital PR para ampliação de backlinks relevantes e fortalecimento de autoridade digital. O objetivo é ampliar presença orgânica, consolidar posicionamento nas buscas e reforçar a marca como referência no seu segmento."
+    },
+    {
+        "id": "paid-traffic",
+        "title": "Tráfego Pago",
+        "isHighlight": true,
+        "price": "R$ 2.500 /mês",
+        "description": "Gestão estratégica de anúncios em Meta Ads e Google Ads para acelerar a captação de leads e potencializar o alcance imediato da operação."
+    },
+    {
+        "id": "automation-sdr",
+        "title": "Automação para atendimento",
+        "isHighlight": true,
+        "price": "R$ 3.000 /mês",
+        "description": "SDR suporte para CRM — automação inteligente para triagem, qualificação e suporte direto no seu fluxo de atendimento e gestão de clientes."
     }
 ]
