@@ -27,7 +27,7 @@ function App() {
         </div>
       </header>
 
-      <main className="projects-grid">
+      <main>
         <div className="section-header">
           <h3>Cases de <span>Sucesso</span></h3>
           <div className="divider"></div>

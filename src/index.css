@@ -21,6 +21,11 @@ html {
   box-sizing: border-box;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 body {
   background-color: var(--bg-color);
   color: var(--text-primary);
@@ -30,6 +35,8 @@ body {
   overflow-x: hidden;
   width: 100%;
   position: relative;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .portfolio-container {
@@ -37,6 +44,25 @@ body {
   margin: 0 auto;
   padding: 0 40px;
   width: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  .portfolio-container {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .portfolio-container {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-container {
+    padding: 0 20px;
+  }
 }
 
 /* Navbar */
@@ -160,10 +186,11 @@ body {
 }
 
 .project-title {
-  font-size: clamp(2rem, 7vw, 3.5rem);
+  font-size: clamp(1.8rem, 7vw, 3.5rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   margin-bottom: 10px;
+  line-height: 1.2;
 }
 
 .project-tags {
@@ -191,8 +218,15 @@ body {
 /* Integrated Grid */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 60px 40px;
+}
+
+@media (max-width: 768px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 }
 
 .project-grid-item {
@@ -276,40 +310,20 @@ body {
   font-weight: 500;
 }
 
-.conceptual-grid {
+.conceptual-grid,
+.fullstack-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
   gap: 60px 40px;
   margin-bottom: var(--section-gap);
 }
 
-.conceptual-item {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
+@media (max-width: 768px) {
 
-.view-badge {
-  background: var(--accent-color);
-  color: white;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-/* Full Stack Projects */
-.fullstack-header {
-  margin-top: 100px;
-}
-
-.fullstack-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
-  margin-bottom: var(--section-gap);
+  .conceptual-grid,
+  .fullstack-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .fullstack-item {
@@ -415,6 +429,7 @@ body {
   color: #fff;
   letter-spacing: -0.04em;
   line-height: 1.1;
+  word-break: break-word;
 }
 
 .special-price {
@@ -425,6 +440,7 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: -0.02em;
+  word-break: break-word;
 }
 
 @media (max-width: 768px) {
@@ -472,19 +488,53 @@ body {
   }
 
   .project-grid,
-  .conceptual-grid {
+  .conceptual-grid,
+  .fullstack-grid {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+
+  .pricing-card {
+    padding: 30px 20px;
+  }
+
+  .main-price {
+    font-size: 2.2rem;
+  }
+
+  .special-price {
+    font-size: 1.6rem;
   }
 }
 
 @media (max-width: 480px) {
   :root {
-    --section-gap: 60px;
+    --section-gap: 80px;
   }
 
   .nav-content {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero h2 {
+    font-size: 2.5rem;
+  }
+
+  .project-title {
+    font-size: 2rem;
+  }
+
+  .pricing-title {
+    font-size: 1.5rem;
+  }
+
+  .main-price {
+    font-size: 1.8rem;
+  }
+
+  .special-price {
+    font-size: 1.4rem;
   }
 }
