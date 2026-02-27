@@ -17,7 +17,7 @@
         "id": "rental",
         "title": "Modelo de Aluguel por Performance",
         "subtitle": "R$ 2K a 15K /mês",
-        "description": "Modelo de investimento ajustado ao desempenho real da operação. A fórmula (Ticket Médio x Leads) / 6 permite que o custo acompanhe o crescimento do faturamento, mantendo previsibilidade financeira e alinhamento entre tecnologia e resultado."
+        "description": "Modelo de investimento ajustado ao desempenho real da operação. A fórmula (Ticket Médio x Leads Fechados) / 6 permite que o custo acompanhe o crescimento do faturamento, mantendo previsibilidade financeira e alinhamento entre tecnologia e resultado."
     },
     {
         "id": "authority",
@@ -30,13 +30,14 @@
         "title": "Tráfego Pago",
         "isHighlight": true,
         "price": "R$ 2.500 /mês",
-        "description": "Gestão estratégica de anúncios em Meta Ads e Google Ads para acelerar a captação de leads e potencializar o alcance imediato da operação."
+        "description": "Gestão estratégica de anúncios em Meta Ads e Google Ads para acelerar a captação de leads e potencializar o alcance imediato da operação. Investimento de R$ 2.500 para orçamentos de até R$ 15.000 — para valores superiores, taxa de gerenciamento de 20% sobre o investimento total."
     },
     {
         "id": "automation-sdr",
         "title": "Automação para atendimento",
         "isHighlight": true,
-        "price": "R$ 3.000 /mês",
+        "price": "R$ 2.500 (Setup)",
+        "specialPrice": "+ R$ 1.000 /mês",
         "description": "SDR suporte para CRM — automação inteligente para triagem, qualificação e suporte direto no seu fluxo de atendimento e gestão de clientes."
     }
 ]
