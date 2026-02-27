@@ -93,10 +93,16 @@ function App() {
 
         <div className="pricing-container">
           {pricingData.map(item => (
-            <div key={item.id} className="pricing-card">
+            <div key={item.id} className={`pricing-card ${item.isHighlight ? 'highlight-card' : ''}`}>
               <div className="pricing-content">
-                <p className="pricing-subtitle-tag">{item.subtitle}</p>
+                {item.subtitle && <p className="pricing-subtitle-tag">{item.subtitle}</p>}
                 <h4 className="pricing-title">{item.title}</h4>
+                {item.isHighlight && (
+                  <div className="highlight-values">
+                    <p className="main-price">{item.price}</p>
+                    <p className="special-price">{item.specialPrice}</p>
+                  </div>
+                )}
                 <p className="pricing-description">{item.description}</p>
               </div>
             </div>

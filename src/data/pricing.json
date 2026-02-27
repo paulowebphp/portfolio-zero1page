@@ -1,20 +1,28 @@
 [
     {
+        "id": "investment",
+        "title": "Investimento de Implementação",
+        "isHighlight": true,
+        "price": "R$ 24K",
+        "specialPrice": "R$ 22K à vista",
+        "description": "Investimento inicial para desenvolvimento, setup e ativação de toda a estrutura estratégica."
+    },
+    {
         "id": "implementation",
         "title": "Implementação & Crédito Inteligente",
         "subtitle": "Cronograma de 6 meses",
-        "description": "Desenvolvimento e implementação completa da estrutura. O valor investido nesta etapa se torna crédito para o aluguel futuro caso não seja totalmente utilizado — garantindo que 100% do seu capital seja convertido em resultado operacional."
+        "description": "Desenvolvimento e implementação completa da estrutura estratégica. O valor investido nessa etapa pode ser convertido em crédito para o modelo de aluguel, caso não seja totalmente utilizado, garantindo que o investimento inicial seja direcionado integralmente para evolução operacional e crescimento sustentável."
     },
     {
         "id": "rental",
         "title": "Modelo de Aluguel por Performance",
         "subtitle": "R$ 2K a 15K /mês",
-        "description": "Investimento dinâmico baseado no seu resultado real. O cálculo `(Ticket Médio x Leads) / 6` garante que o custo da tecnologia acompanhe o crescimento do seu faturamento, mantendo a operação sempre lucrativa e sustentável."
+        "description": "Modelo de investimento ajustado ao desempenho real da operação. A fórmula (Ticket Médio x Leads) / 6 permite que o custo acompanhe o crescimento do faturamento, mantendo previsibilidade financeira e alinhamento entre tecnologia e resultado."
     },
     {
         "id": "authority",
         "title": "Expansão de Autoridade (Digital PR)",
         "subtitle": "4º ao 6º mês",
-        "description": "Inserção estratégica de Digital PR para ampliação de backlinks de alta autoridade. O foco é dominar as primeiras posições do Google e consolidar sua marca como referência máxima no seu nicho de atuação."
+        "description": "Estratégia estruturada de Digital PR para ampliação de backlinks relevantes e fortalecimento de autoridade digital. O objetivo é ampliar presença orgânica, consolidar posicionamento nas buscas e reforçar a marca como referência no seu segmento."
     }
 ]
