@@ -15,18 +15,8 @@ function App() {
   });
 
   useEffect(() => {
-    // Check if there's already an expiration date in localStorage
-    let expirationDate = localStorage.getItem('proposalExpiration');
-
-    if (!expirationDate) {
-      // Set expiration to 7 days from now
-      const now = new Date();
-      const sevenDaysLater = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
-      expirationDate = sevenDaysLater.toISOString();
-      localStorage.setItem('proposalExpiration', expirationDate);
-    }
-
-    const targetDate = new Date(expirationDate).getTime();
+    // BALIZA GLOBAL: Data fixa de expiração (March 6, 2026 16:00 Brazil)
+    const targetDate = new Date('2026-03-06T16:00:00-03:00').getTime();
 
     const calculateTimeLeft = () => {
       const now = new Date().getTime();
@@ -50,8 +40,7 @@ function App() {
     calculateTimeLeft();
 
     const timer = setInterval(() => {
-      const isActive = calculateTimeLeft();
-      if (!isActive) clearInterval(timer);
+      if (!calculateTimeLeft()) clearInterval(timer);
     }, 1000);
 
     return () => clearInterval(timer);
