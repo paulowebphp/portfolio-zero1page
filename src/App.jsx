@@ -8,7 +8,7 @@ import { Github, Mail, Linkedin, Clock } from 'lucide-react';
 
 function App() {
   const [timeLeft, setTimeLeft] = useState({
-    days: 7,
+    days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0
@@ -28,14 +28,13 @@ function App() {
 
     const targetDate = new Date(expirationDate).getTime();
 
-    const timer = setInterval(() => {
+    const calculateTimeLeft = () => {
       const now = new Date().getTime();
       const distance = targetDate - now;
 
       if (distance < 0) {
-        clearInterval(timer);
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-        return;
+        return false;
       }
 
       setTimeLeft({
@@ -44,6 +43,15 @@ function App() {
         minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
         seconds: Math.floor((distance % (1000 * 60)) / 1000)
       });
+      return true;
+    };
+
+    // Calculate immediately on mount
+    calculateTimeLeft();
+
+    const timer = setInterval(() => {
+      const isActive = calculateTimeLeft();
+      if (!isActive) clearInterval(timer);
     }, 1000);
 
     return () => clearInterval(timer);
