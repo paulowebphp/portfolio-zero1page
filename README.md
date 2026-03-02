@@ -46,3 +46,38 @@ Basta copiar um bloco inteiro de projeto no `projects.json` e mudar o `id` e o `
 
 ---
 *Dúvidas? Pergunte para a sua IA parceira!*
+
+---
+
+## 🗓️ Atualização — 2026-03-02 | Múltiplos Portfólios por Slug
+
+### O que mudou
+
+**Roteamento dinâmico** (`react-router-dom` instalado):
+- `/` → portfólio padrão (comportamento original, inalterado)
+- `/:slug` → portfólio personalizado (ex: `/20260302_01`)
+
+**Nova estrutura de dados:**
+```
+src/data/
+  portfolioConfig.js   ← arquivo central de configuração
+  default/             ← dados do portfólio da home
+  20260302_01/         ← dados do 1º portfólio com slug
+```
+
+**Para adicionar um novo portfólio** (`/:meu-slug`):
+1. Crie a pasta `src/data/meu-slug/` com os 4 JSONs (`projects`, `conceptual`, `fullstack`, `pricing`)
+2. Adicione as importações e uma nova entrada em `portfolioConfig.js`
+
+### Configurações por portfólio (em `portfolioConfig.js`)
+
+| Campo | Descrição |
+|---|---|
+| `expiresAt` | Data/hora de expiração do countdown (ISO 8601, ex: `'2026-03-10T18:00:00-03:00'`) |
+| `whatsapp.number` | Número do WhatsApp com DDI (ex: `'5521989248813'`) |
+| `whatsapp.message` | Mensagem pré-preenchida ao clicar no botão |
+
+> Mudar `whatsapp` em um slug atualiza **todos** os botões daquele portfólio automaticamente.
+
+### Imagens
+Todos os portfólios compartilham a pasta `public/projects/`. Nomeie as imagens de forma distinta para evitar conflito.

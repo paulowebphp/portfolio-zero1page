@@ -1,0 +1,45 @@
+[
+    {
+        "id": "investment",
+        "title": "M.O.V.A - Máquina Orgânica de Vendas Automáticas",
+        "isHighlight": true,
+        "price": "R$ 24K",
+        "specialPrice": "R$ 22K à vista",
+        "description": "Investimento inicial para desenvolvimento, setup e ativação de toda a estrutura estratégica."
+    },
+    {
+        "id": "implementation",
+        "title": "Implementação & Crédito Inteligente",
+        "subtitle": "Cronograma de 6 meses",
+        "description": "Desenvolvimento e implementação completa da estrutura estratégica. O valor investido nessa etapa pode ser convertido em crédito para o modelo de aluguel, caso não seja totalmente utilizado, garantindo que o investimento inicial seja direcionado integralmente para evolução operacional e crescimento sustentável."
+    },
+    {
+        "id": "rental",
+        "title": "Modelo de Aluguel por Performance",
+        "subtitle": "Foco em ROI",
+        "isHighlight": false,
+        "price": "R$ 2K a 15K /mês",
+        "description": "Modelo de investimento ajustado ao desempenho real da operação. A fórmula (Ticket Médio x Leads Fechados) / 6 permite que o custo acompanhe o crescimento do faturamento, mantendo previsibilidade financeira e alinhamento entre tecnologia e resultado."
+    },
+    {
+        "id": "authority",
+        "title": "Expansão de Autoridade (Digital PR)",
+        "subtitle": "4º ao 6º mês",
+        "description": "Estratégia estruturada de Digital PR para ampliação de backlinks relevantes e fortalecimento de autoridade digital com garantia de 60 backlinks por inserção via disparo nacional para mailings específicos:\n\nO Globo • Valor Econômico • Folhapress • IG • Terra • Agência o Globo • Mundo do Marketing • Rede de Blogs e Sites • Mailing de Jornalistas"
+    },
+    {
+        "id": "paid-traffic",
+        "title": "Tráfego Pago",
+        "isHighlight": true,
+        "price": "R$ 2.500 /mês",
+        "description": "Gestão estratégica de anúncios em Meta Ads e Google Ads para acelerar a captação de leads e potencializar o alcance imediato da operação. Investimento de R$ 2.500 para orçamentos de até R$ 15.000 — para valores superiores, taxa de gerenciamento de 20% sobre o investimento total."
+    },
+    {
+        "id": "automation-sdr",
+        "title": "Automação para atendimento",
+        "isHighlight": true,
+        "price": "R$ 2.500 (Setup)",
+        "specialPrice": "+ R$ 1.000 /mês",
+        "description": "SDR suporte para CRM — automação inteligente para triagem, qualificação e suporte direto no seu fluxo de atendimento e gestão de clientes."
+    }
+]

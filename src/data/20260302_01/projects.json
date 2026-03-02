@@ -1,0 +1,185 @@
+[
+    {
+        "id": "tripbh",
+        "title": "TripBH",
+        "tags": [
+            "Motorhome",
+            "Aluguel",
+            "WordPress",
+            "UX/UI"
+        ],
+        "intro": "Plataforma de aluguel de motorhomes em Belo Horizonte, avaliada em R$ 160K. O projeto demonstra um crescimento acelerado: o proprietário iniciou a operação com apenas 1 veículo e, em apenas 3 meses de implementação estratégica, expandiu a frota para um segundo carro para atender à demanda crescente. Além da locação, o site oferece roteiros, dicas e informações úteis.",
+        "items": [
+            {
+                "url": "/projects/msedge_9DgpPA3E8q.jpg",
+                "title": "Tecnologia & Design",
+                "description": "Frontend próprio integrado ao WordPress, unindo design moderno com carregamento rápido e navegação fluida."
+            },
+            {
+                "url": "/projects/chrome_c54Ebk0tRS.png",
+                "title": "SEO & Performance Orgânica",
+                "description": "Painel de desempenho no Google Search Console mostrando a evolução orgânica do site nos últimos 12 meses, com destaque para 2,71 mil cliques e 80,5 mil impressões."
+            }
+        ]
+    },
+    {
+        "id": "servidio",
+        "title": "Servidio Advogado",
+        "tags": [
+            "Advocacia",
+            "Trabalhista",
+            "Conversão"
+        ],
+        "intro": "Página institucional do advogado trabalhista Rodrigo Servidio, com atuação no Rio de Janeiro e atendimento online.",
+        "items": [
+            {
+                "url": "/projects/msedge_jZUfG69imI.png",
+                "title": "Presença Digital & Conteúdo",
+                "description": "Página institucional do advogado trabalhista Rodrigo Servidio, com atuação no Rio de Janeiro e atendimento online. O site apresenta estrutura moderna, foco em conversão via WhatsApp e conteúdo informativo voltado a direitos trabalhistas, como demissão, FGTS e verbas rescisórias."
+            },
+            {
+                "url": "/projects/chrome_2PiF52prgX.jpg",
+                "title": "Relatório de Desempenho (Search Console)",
+                "description": "Relatório de desempenho no Google Search Console referente aos últimos 3 meses do site Servidio Advogado. O painel mostra 66 cliques e 18,3 mil impressões, indicando crescimento recente de visibilidade orgânica."
+            }
+        ]
+    },
+    {
+        "id": "quedeliciadecozinha",
+        "title": "QueDeliciaDeCozinha",
+        "tags": [
+            "Cozinha",
+            "Afiliados",
+            "SEO",
+            "Google"
+        ],
+        "intro": "Projeto de Afiliados no Nicho de Cozinha com Artigos na 1ª Página",
+        "items": [
+            {
+                "url": "/projects/msedge_DUda4qohJp.jpg",
+                "title": "Blog de Afiliado",
+                "description": "Projeto digital no nicho de cozinha, com foco em conteúdos informativos e comparativos sobre utensílios, eletroportáteis e itens culinários. Monetizado por meio dos programas de afiliados da Amazon e do Mercado Livre. O site ja movimentou aproximadamente R$ 4.680,00 em faturamento bruto de vendas, com tráfego orgânico proveniente de artigos posicionados no Google."
+            },
+            {
+                "url": "/projects/08_55_57.jpg",
+                "title": "Projeto de Afiliados com Queda Recente, Mas Ainda Forte na Primeira Página",
+                "description": "Projeto que sofreu queda nos últimos meses por falta de manutenção estratégica, mas detém uma taxa de conversão de 3,03% e mantém diversos artigos posicionados na primeira página do Google, gerando cliques recorrentes e vendas ativas. Estrutura com base sólida e alto potencial de recuperação e crescimento com otimização e atualização editorial."
+            }
+        ]
+    },
+    {
+        "id": "smartpulso",
+        "title": "SmartPulso",
+        "tags": [
+            "Smartwatch",
+            "Smartband",
+            "Afiliados",
+            "SEO"
+        ],
+        "intro": "Smart Pulso (SP) é um projeto digital focado no nicho de smartwatches e smartbands, estruturado como micro-nicho horizontal com conteúdos comparativos, reviews e artigos voltados para intenção de compra. O objetivo é ranquear termos relacionados a modelos, funcionalidades e decisões de compra, gerando monetização por meio de afiliados.",
+        "items": [
+            {
+                "url": "/projects/uGBnkkRsyR.jpg",
+                "title": "SmartPulso | Portal de Conteúdo sobre Smartwatches e Smartbands",
+                "description": "SmartPulso é um projeto digital focado no nicho de smartwatches e smartbands, estruturado como portal de conteúdo organizado por clusters temáticos. Com diversas palavras-chave posicionadas entre o 3º e 4º lugar na primeira página do Google, o site consolidou-se como o terceiro maior vendedor orgânico de smartwatches do Brasil. O portal publica comparativos e análises voltadas para intenção de compra, respondendo dúvidas específicas do usuário e conduzindo a decisão de forma objetiva, com estrutura pensada para ranqueamento orgânico e monetização por afiliados."
+            },
+            {
+                "url": "/projects/smartpulso.jpg",
+                "title": "SmartPulso | Portal de Conteúdo com Receita Recorrente",
+                "description": "SmartPulso é um projeto digital focado em conteúdo informativo no seu nicho de atuação, estruturado para gerar tráfego orgânico por meio de artigos estrategicamente posicionados no Google. O site possui monetização ativa, uma taxa de conversão de 2,14% e um histórico de performance que reflete o potencial do mercado: com uma média de R$ 198 de faturamento direto por mês, o projeto já movimentou aproximadamente R$ 1.980,00 em faturamento bruto de vendas."
+            }
+        ]
+    },
+    {
+        "id": "estereoblue",
+        "title": "Estereo Blue",
+        "tags": [
+            "Áudio",
+            "Bluetooth",
+            "Afiliados",
+            "SEO"
+        ],
+        "intro": "Estereo Blue é um projeto digital focado no nicho de equipamentos de áudio Bluetooth portátil, como caixas de som e fones sem fio. Estruturado como micro-nicho vertical, o site trabalha conteúdos comparativos e reviews voltados para intenção de compra, com foco em tráfego orgânico e monetização por meio de afiliados.",
+        "items": [
+            {
+                "url": "/projects/msedge_t8XICFupDJ.jpg",
+                "title": "Estereo Blue | Portal de Conteúdo sobre Áudio Bluetooth",
+                "description": "Página inicial do Estereo Blue, portal de conteúdo focado em caixas de som e fones Bluetooth, estruturado com artigos comparativos e reviews voltados para intenção de compra. O projeto possui monetização ativa por meio de afiliados e já movimentou aproximadamente R$ 2.030,00 em faturamento bruto de vendas."
+            },
+            {
+                "url": "/projects/eb.jpg",
+                "title": "Estereo Blue | Desempenho Orgânico nos Últimos 12 Meses",
+                "description": "Gráfico de desempenho orgânico do Estereo Blue nos últimos 12 meses no Google Search Console, com 33,5 mil cliques, 3,14 milhões de impressões, CTR médio de 1,1%, taxa de conversão de 2,67% e posição média 6, demonstrando volume consistente de tráfego e presença consolidada nas buscas."
+            }
+        ]
+    },
+    {
+        "id": "soplanosdesaude",
+        "title": "Só Planos de Saúde",
+        "tags": [
+            "Saúde",
+            "Consultoria",
+            "Cotação",
+            "WhatsApp"
+        ],
+        "intro": "Só Planos de Saúde é uma consultoria digital especializada em planos de saúde, com 1 ano de atuação e 741 clientes atendidos. O site funciona como um comparador inteligente das principais operadoras do mercado — Amil, Bradesco, Unimed, SulAmérica, NotreDame e outras — permitindo que o usuário faça uma cotação gratuita e personalizada em poucos minutos, diretamente pelo site ou via WhatsApp.",
+        "items": [
+            {
+                "url": "/projects/msedge_LgphQn2qjR.jpg",
+                "title": "Sua saúde, sem complicação",
+                "description": "Imagine chegar ao site às 22h, preocupado com a saúde da sua família, sem saber por onde começar. Em menos de 2 minutos, você preenche nome, cidade e número de pessoas — e recebe uma cotação personalizada com os melhores planos disponíveis na sua região. Sem burocracia, sem enrolação. Só o que importa: proteger quem você ama."
+            },
+            {
+                "url": "/projects/msedge_xu1E4ppmAd.jpg",
+                "title": "Resultados reais em apenas 12 meses",
+                "description": "Não é sorte. É estratégia digital. Com 12 operadoras parceiras e 98% de satisfação dos clientes, a Só Planos de Saúde já ajudou 741 brasileiros a encontrar o plano certo em apenas 1 ano de parceria — com investimento otimizado e alta conversão. Porque cuidar da saúde deve ser uma escolha inteligente."
+            }
+        ]
+    },
+    {
+        "id": "bqmg",
+        "title": "Banheiros Químicos MG",
+        "tags": [
+            "Locação",
+            "Eventos",
+            "Frota Própria",
+            "Minas Gerais"
+        ],
+        "intro": "BQMG é uma empresa mineira especializada no aluguel de banheiros químicos portáteis com frota própria e atendimento 24h em todo o estado de Minas Gerais. Atende obras, eventos e indústrias com uma linha completa de cabines — da Standard à Luxo — entregues com higiene, agilidade e excelência. O site transmite credibilidade e facilita o contato direto com orçamento rápido e visualização clara dos modelos disponíveis.",
+        "items": [
+            {
+                "url": "/projects/msedge_kfAIvU4FBs.jpg",
+                "title": "Banheiros Químicos com Excelência",
+                "description": "A obra não para. O evento não espera. E quando a necessidade é urgente, a BQMG está pronta — frota própria, atendimento 24h e cobertura em todo o estado. Do orçamento à entrega, tudo resolvido com agilidade e sem complicação. Porque excelência está em cada detalhe, até nos que ninguém vê."
+            },
+            {
+                "url": "/projects/msedge_Va1EDz6A4M.jpg",
+                "title": "Tecnologia, higiene e conforto para cada necessidade",
+                "description": "Cada obra tem um tamanho. Cada evento tem um perfil. Por isso a BQMG oferece modelos variados — com disponibilidade imediata — para que o cliente encontre exatamente o que precisa, sem improviso. Do canteiro ao festival, a solução certa sempre à mão."
+            }
+        ]
+    },
+    {
+        "id": "redeprotecaosjc",
+        "title": "Rede de Proteção em SJC",
+        "tags": [
+            "Segurança",
+            "Residencial",
+            "Instalação",
+            "SJC"
+        ],
+        "intro": "Rede de Proteção SJC é uma empresa especializada na instalação de redes e telas de proteção em São José dos Campos e região. Atende residências, apartamentos e espaços comerciais com soluções completas para janelas, sacadas, escadas, piscinas, quadras e pets. Os produtos são fabricados em polietileno de alta densidade com tratamento anti-UV, garantindo durabilidade e resistência a qualquer clima.",
+        "items": [
+            {
+                "url": "/projects/msedge_ZCQ1n2Qpj3.jpg",
+                "title": "Proteção que você nem vê — mas sente todos os dias",
+                "description": "Era domingo à tarde. As crianças corriam pelo apartamento, a janela estava aberta, e aquela sensação de perigo passou pela cabeça como um raio. Não demorou 24 horas para o orçamento estar feito e a rede instalada. Desde então, a janela pode ficar aberta o dia todo. A Rede de Proteção SJC não muda a vista. Só muda a tranquilidade."
+            },
+            {
+                "url": "/projects/msedge_RVhJtvRYkz.jpg",
+                "title": "Diversão sem preocupação — esse é o combinado",
+                "description": "Ter piscina deveria ser sinônimo de alegria — não de ansiedade. Com a rede de proteção instalada pela equipe da SJC, você finalmente consegue relaxar enquanto as crianças e os pets aproveitam o espaço. Material resistente, instalação rápida e garantia do serviço. Porque proteger não é exagero. É amor em forma de rede."
+            }
+        ]
+    }
+]

@@ -1,0 +1,32 @@
+[
+    {
+        "id": "moniop",
+        "title": "MoniOP | Plataforma de Gestão e Performance Comercial",
+        "image": "/projects/msedge_hDKBAxUobm.jpg",
+        "description": "MoniOP é um sistema web desenvolvido para gestão de equipes de vendas, com estrutura hierárquica de acesso (administrador, supervisor e operador) e foco em acompanhamento de desempenho comercial. A plataforma permite controle de metas, geração de relatórios por período, visualização de rankings e aplicação de elementos de gamificação para estimular produtividade e resultado."
+    },
+    {
+        "id": "recructa-facil",
+        "title": "Recructa Fácil | Plataforma Inteligente de Análise de Currículos",
+        "image": "/projects/msedge_LERwmh9VyV.jpg",
+        "description": "Recructa Fácil é um sistema de RH com integração de inteligência artificial para análise e organização de currículos. A plataforma permite upload de arquivos em PDF, classificação automática de candidatos, avaliação de compatibilidade com vagas e apoio estratégico na tomada de decisão para contratação, promoção ou reposicionamento interno."
+    },
+    {
+        "id": "content-hub",
+        "title": "Content Hub | Sistema de Gestão Estratégica para Projetos SEO",
+        "image": "/projects/msedge_iXTMWalixd.jpg",
+        "description": "Content Hub é uma plataforma local desenvolvida para gerenciamento completo de projetos de SEO e blogs de afiliados. O sistema permite organização de clusters, controle de status de conteúdos, categorização estratégica, acompanhamento editorial e integração com automações via n8n, oferecendo controle operacional e visão estrutural sobre ativos digitais."
+    },
+    {
+        "id": "simulador-roi",
+        "title": "Simulador de ROI e Fluxo de Caixa",
+        "image": "/projects/msedge_Sodz87nLIf.jpg",
+        "description": "Calculadora interativa que permite ao usuário simular retorno sobre investimento e projetar fluxo de caixa em tempo real — com entradas personalizadas, gráficos dinâmicos e resultados claros para apoiar decisões financeiras com mais segurança e inteligência."
+    },
+    {
+        "id": "csv-to-markdown",
+        "title": "Conversor de CSV para Markdown",
+        "image": "/projects/msedge_PAUeclnKIi.jpg",
+        "description": "Ferramenta simples e direta que transforma tabelas em CSV em formato Markdown com um clique — ideal para desenvolvedores e redatores que precisam documentar dados rapidamente sem perder tempo com formatação manual."
+    }
+]

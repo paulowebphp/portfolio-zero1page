@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import ProjectCard from './components/ProjectCard';
-import projectData from './data/projects.json';
-import conceptualData from './data/conceptual.json';
-import fullstackData from './data/fullstack.json';
-import pricingData from './data/pricing.json';
+import portfolioConfig from './data/portfolioConfig';
 import { Github, Mail, Linkedin, Clock } from 'lucide-react';
 
 function App() {
+  const { slug } = useParams();
+
+  // Carrega o portfólio correto com base no slug, ou o padrão se não encontrar
+  const portfolioData = portfolioConfig[slug] || portfolioConfig['default'];
+  const { projects: projectData, conceptual: conceptualData, fullstack: fullstackData, pricing: pricingData, expiresAt, whatsapp } = portfolioData;
+
+  // URL do WhatsApp gerada a partir da config centralizada
+  const whatsappUrl = `https://wa.me/${whatsapp.number}?text=${encodeURIComponent(whatsapp.message)}`;
+
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -15,8 +22,8 @@ function App() {
   });
 
   useEffect(() => {
-    // BALIZA GLOBAL: Data fixa de expiração (March 6, 2026 16:00 Brazil)
-    const targetDate = new Date('2026-03-06T16:00:00-03:00').getTime();
+    // Data de expiração vinda do portfolioConfig de cada slug
+    const targetDate = new Date(expiresAt).getTime();
 
     const calculateTimeLeft = () => {
       const now = new Date().getTime();
@@ -44,7 +51,7 @@ function App() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [expiresAt]);
 
   return (
     <div className="portfolio-container">
@@ -52,7 +59,7 @@ function App() {
         <div className="nav-content">
           <h1 className="logo">Portfolio <span>Zero1Page</span></h1>
           <a
-            href="https://wa.me/5521989248813?text=Quero%20Falar%20com%20o%20Diretor%20Comercial%20e%20Head%20PR%20sobre%20a%20proposta%21"
+            href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="whatsapp-contact"
@@ -161,7 +168,7 @@ function App() {
           <div className="footer-cta">
             <p className="cta-text">Dúvidas sobre a estratégia? Clique abaixo e fale conosco agora.</p>
             <a
-              href="https://wa.me/5521989248813?text=Quero%20Falar%20com%20o%20Diretor%20Comercial%20e%20Head%20PR%20sobre%20a%20proposta%21"
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="footer-whatsapp-btn"
