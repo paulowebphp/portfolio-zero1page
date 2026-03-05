@@ -1,57 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import ProjectCard from './components/ProjectCard';
 import portfolioConfig from './data/portfolioConfig';
-import { Github, Mail, Linkedin, Clock } from 'lucide-react';
+import { Clock } from 'lucide-react';
 
 function App() {
   const { slug } = useParams();
 
   // Carrega o portfólio correto com base no slug, ou o padrão se não encontrar
   const portfolioData = portfolioConfig[slug] || portfolioConfig['default'];
-  const { projects: projectData, conceptual: conceptualData, fullstack: fullstackData, pricing: pricingData, expiresAt, whatsapp } = portfolioData;
+  const { projects: projectData, conceptual: conceptualData, fullstack: fullstackData, pricing: pricingData, whatsapp } = portfolioData;
 
   // URL do WhatsApp gerada a partir da config centralizada
   const whatsappUrl = `https://wa.me/${whatsapp.number}?text=${encodeURIComponent(whatsapp.message)}`;
 
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
-
-  useEffect(() => {
-    // Data de expiração vinda do portfolioConfig de cada slug
-    const targetDate = new Date(expiresAt).getTime();
-
-    const calculateTimeLeft = () => {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance < 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-        return false;
-      }
-
-      setTimeLeft({
-        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000)
-      });
-      return true;
-    };
-
-    // Calculate immediately on mount
-    calculateTimeLeft();
-
-    const timer = setInterval(() => {
-      if (!calculateTimeLeft()) clearInterval(timer);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [expiresAt]);
 
   return (
     <div className="portfolio-container">
