@@ -3,20 +3,56 @@ import { useParams, Link } from 'react-router-dom';
 import ProjectCard from './components/ProjectCard';
 import { supabase } from './lib/supabase';
 import globalAuthority from './data/global_authority.json';
+import portfolioConfig from './data/portfolioConfig';
+import defaultPricing from './data/default/pricing.json';
 import { Clock, Loader2, AlertCircle, Globe } from 'lucide-react';
 
-// Função para obter cliente Supabase dinâmico (caso mude via painel Settings)
-const getSupabaseClient = () => {
-  const localSettings = localStorage.getItem('admin_settings');
-  if (localSettings) {
-    try {
-      const { supabaseUrl, supabaseAnonKey } = JSON.parse(localSettings);
-      if (supabaseUrl && supabaseAnonKey) {
-        // Para simplificar, usamos o supabase client exportado, mas o ideal seria re-instanciar
-        return supabase;
-      }
-    } catch (e) { }
+// Converte os dados estáticos do portfolioConfig para o mesmo formato do Supabase
+function adaptStaticConfig(config, slug) {
+  const pricing = config.pricing;
+  const mova       = pricing.find(p => p.id === 'investment');
+  const rental     = pricing.find(p => p.id === 'rental');
+  const traffic    = pricing.find(p => p.id === 'paid-traffic');
+  const automation = pricing.find(p => p.id === 'automation-sdr');
+
+  let prazo_tipo, prazo_dias, prazo_inicio;
+  if (config.expirationText) {
+    prazo_tipo  = 'static';
+    const match = config.expirationText.match(/\d+/);
+    prazo_dias  = match ? parseInt(match[0]) : config.expirationText;
+    prazo_inicio = null;
+  } else {
+    prazo_tipo   = 'countdown';
+    prazo_inicio = config.expiresAt;
+    prazo_dias   = 0; // targetDate = prazo_inicio + 0 = expiresAt
   }
+
+  return {
+    slug,
+    titulo_proposta:  'Proposta Comercial Exclusiva',
+    mova_principal:   mova?.price         ?? null,
+    mova_avista:      mova?.specialPrice   ?? null,
+    performance_range: rental?.price       ?? null,
+    trafego_mensal:   traffic?.price       ?? null,
+    automacao_setup:  automation?.price    ?? null,
+    automacao_mensal: automation?.specialPrice?.replace(/^\+\s*/, '') ?? null,
+    prazo_tipo,
+    prazo_dias,
+    prazo_inicio,
+    whatsapp_contatos: {
+      nome:            'Diretor',
+      numero:          config.whatsapp.number,
+      mensagem_padrao: config.whatsapp.message,
+    },
+  };
+}
+
+// Retorna o cliente Supabase (com suporte a override via Settings)
+const getSupabaseClient = () => {
+  try {
+    const s = localStorage.getItem('admin_settings');
+    if (s) JSON.parse(s); // valida o JSON
+  } catch (e) { }
   return supabase;
 };
 
@@ -32,23 +68,37 @@ function App() {
 
   useEffect(() => {
     async function fetchProposal() {
+      // Fallback para dados estáticos locais
+      const tryStaticFallback = (err) => {
+        const staticConfig = portfolioConfig[proposalSlug];
+        if (staticConfig) {
+          setProposalData(adaptStaticConfig(staticConfig, proposalSlug));
+        } else {
+          console.error('Proposta não encontrada:', err);
+          setError(err?.message ?? 'Proposta não encontrada.');
+        }
+      };
+
       try {
         setLoading(true);
-        // Fetch proposal with contact join
-        const { data, error: sbError } = await client
+
+        // Race: Supabase vs timeout de 5s — evita loading infinito
+        const fetchPromise = client
           .from('propostas')
-          .select(`
-            *,
-            whatsapp_contatos (*)
-          `)
+          .select(`*, whatsapp_contatos (*)`)
           .eq('slug', proposalSlug)
           .single();
+
+        const timeoutPromise = new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('timeout')), 5000)
+        );
+
+        const { data, error: sbError } = await Promise.race([fetchPromise, timeoutPromise]);
 
         if (sbError) throw sbError;
         setProposalData(data);
       } catch (err) {
-        console.error('Erro ao buscar proposta:', err);
-        setError(err.message);
+        tryStaticFallback(err);
       } finally {
         setLoading(false);
       }
@@ -167,7 +217,7 @@ function App() {
           </div>
         )}
 
-        {/* Seção Comercial Dinâmica */}
+        {/* Seção Comercial */}
         <div className="section-header pricing-header">
           <h3>Investimento & <span>Estratégia</span></h3>
           <p className="section-subtitle">Proposta Comercial</p>
@@ -175,53 +225,101 @@ function App() {
         </div>
 
         <div className="pricing-container">
-          <div className="commercial-grid">
-            {proposalData.mova_principal && (
-              <div className="pricing-card highlight-card">
-                <div className="pricing-content">
-                  <h4 className="pricing-title">M.O.V.A — Máquina Orgânica</h4>
-                  <div className="highlight-values">
-                    <p className="main-price">{proposalData.mova_principal}</p>
-                    <p className="special-price">{proposalData.mova_avista}</p>
-                  </div>
-                </div>
-              </div>
-            )}
 
-            {proposalData.performance_range && (
-              <div className="pricing-card">
-                <div className="pricing-content">
-                  <h4 className="pricing-title">Aluguel por Performance</h4>
-                  <div className="highlight-values">
-                    <p className="main-price">{proposalData.performance_range}</p>
+            {/* M.O.V.A */}
+            {proposalData.mova_principal && (() => {
+              const p = defaultPricing.find(x => x.id === 'investment');
+              return (
+                <div className="pricing-card highlight-card">
+                  <div className="pricing-content">
+                    <h4 className="pricing-title">{p?.title || 'M.O.V.A — Máquina Orgânica'}</h4>
+                    {p?.description && <p className="pricing-description">{p.description}</p>}
+                    <div className="highlight-values">
+                      <p className="main-price">{proposalData.mova_principal}</p>
+                      {proposalData.mova_avista && <p className="special-price">{proposalData.mova_avista}</p>}
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              );
+            })()}
 
-            {proposalData.trafego_mensal && (
-              <div className="pricing-card">
-                <div className="pricing-content">
-                  <h4 className="pricing-title">Tráfego Pago</h4>
-                  <div className="highlight-values">
-                    <p className="main-price">{proposalData.trafego_mensal}</p>
+            {/* Implementação & Crédito — card estático informativo */}
+            {(() => {
+              const p = defaultPricing.find(x => x.id === 'implementation');
+              return p ? (
+                <div className="pricing-card info-card">
+                  <div className="pricing-content">
+                    {p.subtitle && <p className="pricing-subtitle-tag">{p.subtitle}</p>}
+                    <h4 className="pricing-title">{p.title}</h4>
+                    <p className="pricing-description">{p.description}</p>
                   </div>
                 </div>
-              </div>
-            )}
+              ) : null;
+            })()}
 
-            {proposalData.automacao_setup && (
-              <div className="pricing-card">
-                <div className="pricing-content">
-                  <h4 className="pricing-title">Automação de Atendimento</h4>
-                  <div className="highlight-values">
-                    <p className="main-price">{proposalData.automacao_setup}</p>
-                    <p className="special-price">+ {proposalData.automacao_mensal}</p>
+            {/* Aluguel por Performance */}
+            {proposalData.performance_range && (() => {
+              const p = defaultPricing.find(x => x.id === 'rental');
+              return (
+                <div className="pricing-card">
+                  <div className="pricing-content">
+                    {p?.subtitle && <p className="pricing-subtitle-tag">{p.subtitle}</p>}
+                    <h4 className="pricing-title">{p?.title || 'Aluguel por Performance'}</h4>
+                    {p?.description && <p className="pricing-description">{p.description}</p>}
+                    <div className="highlight-values">
+                      <p className="main-price">{proposalData.performance_range}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-          </div>
+              );
+            })()}
+
+            {/* Expansão de Autoridade — card estático informativo */}
+            {(() => {
+              const p = defaultPricing.find(x => x.id === 'authority');
+              return p ? (
+                <div className="pricing-card info-card authority-card">
+                  <div className="pricing-content">
+                    {p.subtitle && <p className="pricing-subtitle-tag">{p.subtitle}</p>}
+                    <h4 className="pricing-title">{p.title}</h4>
+                    <p className="pricing-description authority-description">{p.description}</p>
+                  </div>
+                </div>
+              ) : null;
+            })()}
+
+            {/* Tráfego Pago */}
+            {proposalData.trafego_mensal && (() => {
+              const p = defaultPricing.find(x => x.id === 'paid-traffic');
+              return (
+                <div className="pricing-card">
+                  <div className="pricing-content">
+                    <h4 className="pricing-title">{p?.title || 'Tráfego Pago'}</h4>
+                    {p?.description && <p className="pricing-description">{p.description}</p>}
+                    <div className="highlight-values">
+                      <p className="main-price">{proposalData.trafego_mensal}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* Automação */}
+            {proposalData.automacao_setup && (() => {
+              const p = defaultPricing.find(x => x.id === 'automation-sdr');
+              return (
+                <div className="pricing-card">
+                  <div className="pricing-content">
+                    <h4 className="pricing-title">{p?.title || 'Automação de Atendimento'}</h4>
+                    {p?.description && <p className="pricing-description">{p.description}</p>}
+                    <div className="highlight-values">
+                      <p className="main-price">{proposalData.automacao_setup}</p>
+                      {proposalData.automacao_mensal && <p className="special-price">+ {proposalData.automacao_mensal}</p>}
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
 
           <div className="pricing-footer-note">
             <Clock size={32} />
@@ -236,7 +334,8 @@ function App() {
 
           <div className="footer-cta">
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="footer-whatsapp-btn">
-              <span>Fale com {contact ? contact.nome : 'o Diretor'} agora</span>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <span>Fale com o Diretor Comercial e Head PR agora!</span>
             </a>
           </div>
         </div>

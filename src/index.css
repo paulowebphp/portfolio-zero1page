@@ -129,12 +129,39 @@ body {
   text-align: center;
 }
 
+.section-header h3 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.section-header h3 span {
+  background: linear-gradient(90deg, #0070f3, #00dfd8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .divider {
   width: 80px;
   height: 4px;
   background: linear-gradient(90deg, #0070f3, #00dfd8);
   border-radius: 2px;
   position: relative;
+}
+
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 1px;
+  background: var(--glass-border);
+  z-index: -1;
 }
 
 /* --- Admin Dashboard Styles --- */
@@ -666,5 +693,418 @@ body {
 
   .btn-mobile-logout:hover {
     color: #ff6b6b;
+  }
+}
+
+/* ==========================================
+   PROJECT CARDS (Cases de Sucesso)
+   ========================================== */
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-top: 100px;
+  border-top: 1px solid var(--glass-border);
+  margin-bottom: var(--section-gap);
+}
+
+.project-header {
+  margin-bottom: 0;
+}
+
+.project-title {
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tag {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-color);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.project-intro {
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  color: var(--text-secondary);
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 60px 40px;
+}
+
+.project-grid-item {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ==========================================
+   IMAGE WRAPPER (compartilhado ProjectCard + Conceptual)
+   ========================================== */
+
+.image-wrapper {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #111;
+  border: 1px solid var(--glass-border);
+  width: 100%;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.image-wrapper:hover img {
+  transform: scale(1.02);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #fff;
+}
+
+.image-wrapper:hover .image-overlay {
+  opacity: 1;
+}
+
+.view-badge {
+  background: var(--accent-color);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.item-description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+/* ==========================================
+   CONCEPTUAL SHOWCASE
+   ========================================== */
+
+.conceptual-showcase {
+  margin-bottom: 0;
+}
+
+.conceptual-header {
+  margin-top: 100px;
+}
+
+.section-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-top: -15px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.conceptual-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px 40px;
+  margin-bottom: var(--section-gap);
+}
+
+.conceptual-item {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ==========================================
+   PRICING SECTION
+   ========================================== */
+
+.pricing-header {
+  margin-top: 150px;
+}
+
+.pricing-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 800px;
+  margin: 0 auto var(--section-gap);
+}
+
+.pricing-card {
+  padding: 40px;
+  background: var(--card-bg);
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #0070f3, #00dfd8);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 112, 243, 0.3);
+}
+
+.pricing-card:hover::before {
+  opacity: 1;
+}
+
+.highlight-card {
+  border-color: rgba(0, 112, 243, 0.2);
+}
+
+.info-card {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.authority-card .pricing-title {
+  color: #e8c56d;
+}
+
+.authority-description {
+  white-space: pre-line;
+}
+
+.pricing-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pricing-subtitle-tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.pricing-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.pricing-description {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.highlight-values {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.main-price {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--accent-color);
+  letter-spacing: -0.03em;
+}
+
+.special-price {
+  font-size: 1.05rem;
+  color: #00c853;
+  font-weight: 600;
+}
+
+/* ==========================================
+   PRICING FOOTER (countdown + CTA)
+   ========================================== */
+
+.pricing-footer-note {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 12px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.pricing-footer-note span {
+  color: #fff;
+  font-weight: 700;
+}
+
+.footer-cta {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(37, 211, 102, 0.25);
+  white-space: nowrap;
+}
+
+.footer-whatsapp-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(37, 211, 102, 0.4);
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+
+.footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--glass-border);
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-top: 40px;
+}
+
+/* ==========================================
+   UTILITIES EXTRAS (loading/error states)
+   ========================================== */
+
+.ml-4 { margin-left: 16px; }
+.p-4  { padding: 16px; }
+.mb-2 { margin-bottom: 8px; }
+.mb-4 { margin-bottom: 16px; }
+.mb-6 { margin-bottom: 24px; }
+
+.text-xl   { font-size: 1.25rem; }
+.text-2xl  { font-size: 1.5rem; }
+.text-muted { color: var(--text-secondary); }
+.text-red-500 { color: #ef4444; }
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  background: var(--accent-color);
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: opacity 0.2s;
+}
+.btn-primary:hover { opacity: 0.85; }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* ==========================================
+   RESPONSIVE — Proposta pública
+   ========================================== */
+
+@media (max-width: 768px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .conceptual-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-footer-note {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-whatsapp-btn {
+    padding: 14px 24px;
+    font-size: 0.85rem;
+    white-space: normal;
+    text-align: center;
   }
 }
