@@ -154,6 +154,7 @@ body {
   position: fixed;
   height: 100vh;
   z-index: 100;
+  overflow: hidden;
 }
 
 .sidebar-header h2 {
@@ -162,6 +163,7 @@ body {
   margin-bottom: 40px;
   text-transform: uppercase;
   color: #fff;
+  flex-shrink: 0;
 }
 
 .sidebar-header h2 span {
@@ -172,6 +174,14 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  display: none;
 }
 
 .nav-item {
@@ -526,9 +536,10 @@ body {
    ========================================== */
 
 .sidebar-footer {
-  margin-top: auto;
+  flex-shrink: 0;
   padding-top: 20px;
   border-top: 1px solid var(--glass-border);
+  margin-top: 12px;
 }
 
 .btn-logout {
