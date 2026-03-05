@@ -21,6 +21,8 @@ const portfolioConfig = {
         pricing: defaultPricing,
         // Data de expiração do countdown (ISO 8601 com fuso horário)
         expiresAt: '2026-03-06T16:00:00-03:00',
+        // Se definido, exibe este texto em vez do countdown dinâmico
+        expirationText: null,
         // Contato WhatsApp — mude aqui para atualizar todos os botões do portfólio
         whatsapp: {
             number: '5521989248813',
@@ -34,6 +36,8 @@ const portfolioConfig = {
         pricing: p20260302_01_Pricing,
         // Data de expiração do countdown (ISO 8601 com fuso horário)
         expiresAt: '2026-03-06T16:00:00-03:00',
+        // Se definido, exibe este texto em vez do countdown dinâmico
+        expirationText: '7 dias',
         // Contato WhatsApp — mude aqui para atualizar todos os botões do portfólio
         whatsapp: {
             number: '5521989248813',
