@@ -45,6 +45,29 @@
         ]
     },
     {
+        "id": "jdl-refrigeracoes",
+        "title": "JDL Refrigerações",
+        "tags": [
+            "Assistência Técnica",
+            "Eletrodomésticos",
+            "Rio de Janeiro",
+            "Performance"
+        ],
+        "intro": "JDL Refrigerações é uma assistência técnica especializada em eletrodomésticos com mais de 40 anos de atuação no Rio de Janeiro. Referência multimarcas no estado, atende geladeiras, lava e seca e ar-condicionado das principais marcas do mercado — Brastemp, Electrolux, Samsung, LG, Bosch, Consul e outras. Com profissionais qualificados, preço justo e atendimento de segunda a sábado, a JDL construiu sua reputação numa base sólida: qualidade, eficiência e responsabilidade com cada cliente.",
+        "items": [
+            {
+                "url": "/projects/msedge_GiKM5vTHlv.jpg",
+                "title": "40 anos resolvendo o que outros não conseguem",
+                "description": "A geladeira parou numa sexta à noite. O técnico de sempre não atende. O aparelho é importado e ninguém quer nem olhar. Aí você liga para a JDL — e em minutos já tem um profissional qualificado encaminhado para o seu endereço. Quatro décadas de experiência no RJ para que o seu dia não pare por causa de um eletrodoméstico."
+            },
+            {
+                "url": "/projects/msedge_Do3MAPuNsQ.jpg",
+                "title": "Sua marca favorita, nas mãos de quem entende",
+                "description": "Brastemp, Samsung, LG, Electrolux, Bosch — não importa a marca, a JDL tem o técnico certo para o conserto certo. Sem enrolação, sem orçamento surpresa. Só serviço sério, com garantia e compromisso de quem já atendeu milhares de clientes satisfeitos no Rio de Janeiro. Porque eletrodoméstico bom é o que funciona."
+            }
+        ]
+    },
+    {
         "id": "quedeliciadecozinha",
         "title": "QueDeliciaDeCozinha",
         "tags": [
