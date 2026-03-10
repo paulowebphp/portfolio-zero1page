@@ -54,17 +54,155 @@
                 "Rio de Janeiro",
                 "Performance"
             ],
-            "intro": "JDL Refrigerações é uma assistência técnica especializada em eletrodomésticos com mais de 40 anos de atuação no Rio de Janeiro.",
+            "intro": "JDL Refrigerações é uma assistência técnica especializada em eletrodomésticos com mais de 40 anos de atuação no Rio de Janeiro. Referência multimarcas no estado, atende geladeiras, lava e seca e ar-condicionado das principais marcas do mercado — Brastemp, Electrolux, Samsung, LG, Bosch, Consul e outras. Com profissionais qualificados, preço justo e atendimento de segunda a sábado, a JDL construiu sua reputação numa base sólida: qualidade, eficiência e responsabilidade com cada cliente.",
             "items": [
                 {
                     "url": "/projects/msedge_GiKM5vTHlv.jpg",
                     "title": "40 anos resolvendo o que outros não conseguem",
-                    "description": "Quatro décadas de experiência no RJ para que o seu dia não pare por causa de um eletrodoméstico."
+                    "description": "A geladeira parou numa sexta à noite. O técnico de sempre não atende. O aparelho é importado e ninguém quer nem olhar. Aí você liga para a JDL — e em minutos já tem um profissional qualificado encaminhado para o seu endereço. Quatro décadas de experiência no RJ para que o seu dia não pare por causa de um eletrodoméstico."
                 },
                 {
                     "url": "/projects/msedge_Do3MAPuNsQ.jpg",
                     "title": "Sua marca favorita, nas mãos de quem entende",
-                    "description": "Brastemp, Samsung, LG, Electrolux, Bosch — não importa a marca, a JDL tem o técnico certo para o conserto certo."
+                    "description": "Brastemp, Samsung, LG, Electrolux, Bosch — não importa a marca, a JDL tem o técnico certo para o conserto certo. Sem enrolação, sem orçamento surpresa. Só serviço sério, com garantia e compromisso de quem já atendeu milhares de clientes satisfeitos no Rio de Janeiro. Porque eletrodoméstico bom é o que funciona."
+                }
+            ]
+        },
+        {
+            "id": "quedeliciadecozinha",
+            "title": "QueDeliciaDeCozinha",
+            "tags": [
+                "Cozinha",
+                "Afiliados",
+                "SEO",
+                "Google"
+            ],
+            "intro": "Projeto de Afiliados no Nicho de Cozinha com Artigos na 1ª Página",
+            "items": [
+                {
+                    "url": "/projects/msedge_DUda4qohJp.jpg",
+                    "title": "Blog de Afiliado",
+                    "description": "Projeto digital no nicho de cozinha, com foco em conteúdos informativos e comparativos sobre utensílios, eletroportáteis e itens culinários. Monetizado por meio dos programas de afiliados da Amazon e do Mercado Livre. O site ja movimentou aproximadamente R$ 4.680,00 em faturamento bruto de vendas, com tráfego orgânico proveniente de artigos posicionados no Google."
+                },
+                {
+                    "url": "/projects/08_55_57.jpg",
+                    "title": "Projeto de Afiliados com Queda Recente, Mas Ainda Forte na Primeira Página",
+                    "description": "Projeto que sofreu queda nos últimos meses por falta de manutenção estratégica, mas detém uma taxa de conversão de 3,03% e mantém diversos artigos posicionados na primeira página do Google, gerando cliques recorrentes e vendas ativas. Estrutura com base sólida e alto potencial de recuperação e crescimento com otimização e atualização editorial."
+                }
+            ]
+        },
+        {
+            "id": "smartpulso",
+            "title": "SmartPulso",
+            "tags": [
+                "Smartwatch",
+                "Smartband",
+                "Afiliados",
+                "SEO"
+            ],
+            "intro": "Smart Pulso (SP) é um projeto digital focado no nicho de smartwatches e smartbands, estruturado como micro-nicho horizontal com conteúdos comparativos, reviews e artigos voltados para intenção de compra. O objetivo é ranquear termos relacionados a modelos, funcionalidades e decisões de compra, gerando monetização por meio de afiliados.",
+            "items": [
+                {
+                    "url": "/projects/uGBnkkRsyR.jpg",
+                    "title": "SmartPulso | Portal de Conteúdo sobre Smartwatches e Smartbands",
+                    "description": "SmartPulso é um projeto digital focado no nicho de smartwatches e smartbands, estruturado como portal de conteúdo organizado por clusters temáticos. Com diversas palavras-chave posicionadas entre o 3º e 4º lugar na primeira página do Google, o site consolidou-se como o terceiro maior vendedor orgânico de smartwatches do Brasil. O portal publica comparativos e análises voltadas para intenção de compra, respondendo dúvidas específicas do usuário e conduzindo a decisão de forma objetiva, com estrutura pensada para ranqueamento orgânico e monetização por afiliados."
+                },
+                {
+                    "url": "/projects/smartpulso.jpg",
+                    "title": "SmartPulso | Portal de Conteúdo com Receita Recorrente",
+                    "description": "SmartPulso é um projeto digital focado em conteúdo informativo no seu nicho de atuação, estruturado para gerar tráfego orgânico por meio de artigos estrategicamente posicionados no Google. O site possui monetização ativa, uma taxa de conversão de 2,14% e um histórico de performance que reflete o potencial do mercado: com uma média de R$ 198 de faturamento direto por mês, o projeto já movimentou aproximadamente R$ 1.980,00 em faturamento bruto de vendas."
+                }
+            ]
+        },
+        {
+            "id": "estereoblue",
+            "title": "Estereo Blue",
+            "tags": [
+                "Áudio",
+                "Bluetooth",
+                "Afiliados",
+                "SEO"
+            ],
+            "intro": "Estereo Blue é um projeto digital focado no nicho de equipamentos de áudio Bluetooth portátil, como caixas de som e fones sem fio. Estruturado como micro-nicho vertical, o site trabalha conteúdos comparativos e reviews voltados para intenção de compra, com foco em tráfego orgânico e monetização por meio de afiliados.",
+            "items": [
+                {
+                    "url": "/projects/msedge_t8XICFupDJ.jpg",
+                    "title": "Estereo Blue | Portal de Conteúdo sobre Áudio Bluetooth",
+                    "description": "Página inicial do Estereo Blue, portal de conteúdo focado em caixas de som e fones Bluetooth, estruturado com artigos comparativos e reviews voltados para intenção de compra. O projeto possui monetização ativa por meio de afiliados e já movimentou aproximadamente R$ 2.030,00 em faturamento bruto de vendas."
+                },
+                {
+                    "url": "/projects/eb.jpg",
+                    "title": "Estereo Blue | Desempenho Orgânico nos Últimos 12 Meses",
+                    "description": "Gráfico de desempenho orgânico do Estereo Blue nos últimos 12 meses no Google Search Console, com 33,5 mil cliques, 3,14 milhões de impressões, CTR médio de 1,1%, taxa de conversão de 2,67% e posição média 6, demonstrando volume consistente de tráfego e presença consolidada nas buscas."
+                }
+            ]
+        },
+        {
+            "id": "soplanosdesaude",
+            "title": "Só Planos de Saúde",
+            "tags": [
+                "Saúde",
+                "Consultoria",
+                "Cotação",
+                "WhatsApp"
+            ],
+            "intro": "Só Planos de Saúde é uma consultoria digital especializada em planos de saúde, com 1 ano de atuação e 741 clientes atendidos. O site funciona como um comparador inteligente das principais operadoras do mercado — Amil, Bradesco, Unimed, SulAmérica, NotreDame e outras — permitindo que o usuário faça uma cotação gratuita e personalizada em poucos minutos, diretamente pelo site ou via WhatsApp.",
+            "items": [
+                {
+                    "url": "/projects/msedge_LgphQn2qjR.jpg",
+                    "title": "Sua saúde, sem complicação",
+                    "description": "Imagine chegar ao site às 22h, preocupado com a saúde da sua família, sem saber por onde começar. Em menos de 2 minutos, você preenche nome, cidade e número de pessoas — e recebe uma cotação personalizada com os melhores planos disponíveis na sua região. Sem burocracia, sem enrolação. Só o que importa: proteger quem você ama."
+                },
+                {
+                    "url": "/projects/msedge_xu1E4ppmAd.jpg",
+                    "title": "Resultados reais em apenas 12 meses",
+                    "description": "Não é sorte. É estratégia digital. Com 12 operadoras parceiras e 98% de satisfação dos clientes, a Só Planos de Saúde já ajudou 741 brasileiros a encontrar o plano certo em apenas 1 ano de parceria — com investimento otimizado e alta conversão. Porque cuidar da saúde deve ser uma escolha inteligente."
+                }
+            ]
+        },
+        {
+            "id": "bqmg",
+            "title": "Banheiros Químicos MG",
+            "tags": [
+                "Locação",
+                "Eventos",
+                "Frota Própria",
+                "Minas Gerais"
+            ],
+            "intro": "BQMG é uma empresa mineira especializada no aluguel de banheiros químicos portáteis com frota própria e atendimento 24h em todo o estado de Minas Gerais. Atende obras, eventos e indústrias com uma linha completa de cabines — da Standard à Luxo — entregues com higiene, agilidade e excelência. O site transmite credibilidade e facilita o contato direto com orçamento rápido e visualização clara dos modelos disponíveis.",
+            "items": [
+                {
+                    "url": "/projects/msedge_kfAIvU4FBs.jpg",
+                    "title": "Banheiros Químicos com Excelência",
+                    "description": "A obra não para. O evento não espera. E quando a necessidade é urgente, a BQMG está pronta — frota própria, atendimento 24h e cobertura em todo o estado. Do orçamento à entrega, tudo resolvido com agilidade e sem complicação. Porque excelência está em cada detalhe, até nos que ninguém vê."
+                },
+                {
+                    "url": "/projects/msedge_Va1EDz6A4M.jpg",
+                    "title": "Tecnologia, higiene e conforto para cada necessidade",
+                    "description": "Cada obra tem um tamanho. Cada evento tem um perfil. Por isso a BQMG oferece modelos variados — com disponibilidade imediata — para que o cliente encontre exatamente o que precisa, sem improviso. Do canteiro ao festival, a solução certa sempre à mão."
+                }
+            ]
+        },
+        {
+            "id": "redeprotecaosjc",
+            "title": "Rede de Proteção em SJC",
+            "tags": [
+                "Segurança",
+                "Residencial",
+                "Instalação",
+                "SJC"
+            ],
+            "intro": "Rede de Proteção SJC é uma empresa especializada na instalação de redes e telas de proteção em São José dos Campos e região. Atende residências, apartamentos e espaços comerciais com soluções completas para janelas, sacadas, escadas, piscinas, quadras e pets. Os produtos são fabricados em polietileno de alta densidade com tratamento anti-UV, garantindo durabilidade e resistência a qualquer clima.",
+            "items": [
+                {
+                    "url": "/projects/msedge_ZCQ1n2Qpj3.jpg",
+                    "title": "Proteção que você nem vê — mas sente todos os dias",
+                    "description": "Era domingo à tarde. As crianças corriam pelo apartamento, a janela estava aberta, e aquela sensação de perigo passou pela cabeça como um raio. Não demorou 24 horas para o orçamento estar feito e a rede instalada. Desde então, a janela pode ficar aberta o dia todo. A Rede de Proteção SJC não muda a vista. Só muda a tranquilidade."
+                },
+                {
+                    "url": "/projects/msedge_RVhJtvRYkz.jpg",
+                    "title": "Diversão sem preocupação — esse é o combinado",
+                    "description": "Ter piscina deveria ser sinônimo de alegria — não de ansiedade. Com a rede de proteção instalada pela equipe da SJC, você finalmente consegue relaxar enquanto as crianças e os pets aproveitam o espaço. Material resistente, instalação rápida e garantia do serviço. Porque proteger não é exagero. É amor em forma de rede."
                 }
             ]
         }
@@ -74,13 +212,49 @@
             "id": "mania-do-ar-sjc",
             "title": "Mania do Ar SJC — Exemplo de site para empresa de ar-condicionado em SJC",
             "image": "/projects/msedge_E4a0zHOTrB.jpg",
-            "description": "Mania do Ar SJC é um protótipo de site para empresas de ar-condicionado em São José dos Campos."
+            "description": "Mania do Ar SJC é um protótipo de site para empresas de ar-condicionado em São José dos Campos, demonstrando como uma presença digital profissional pode apresentar serviços de instalação, manutenção, limpeza, carga de gás e contratos — com estrutura completa, depoimentos reais e chamadas diretas para WhatsApp. Um modelo moderno e funcional pronto para se tornar real."
         },
         {
             "id": "advocacia-previdenciaria",
             "title": "Exemplo de site para advocacia previdenciária",
             "image": "/projects/msedge_LjMv1buUBV.jpg",
-            "description": "Site demonstrativo desenvolvido para escritórios de direito previdenciário."
+            "description": "Site demonstrativo desenvolvido para escritórios de direito previdenciário — mostrando como uma presença digital profissional pode apresentar serviços, gerar confiança e atrair clientes que buscam aposentadoria, BPC, pensão por morte e outros benefícios do INSS."
+        },
+        {
+            "id": "advocacia-previdenciaria-empresarial",
+            "title": "Exemplo de site para advocacia previdenciária empresarial",
+            "image": "/projects/chrome_VMY8t31tZV.jpg",
+            "description": "Site demonstrativo para escritórios especializados em direito previdenciário empresarial — mostrando como apresentar serviços de gestão de benefícios, planejamento previdenciário e defesa de empresas perante o INSS de forma profissional e estratégica."
+        },
+        {
+            "id": "advocacia-tributaria",
+            "title": "Exemplo de site para advocacia tributária",
+            "image": "/projects/msedge_ECzuNYy2dW.jpg",
+            "description": "Site demonstrativo para escritórios especializados em direito tributário — mostrando como apresentar serviços de planejamento fiscal, recuperação de créditos, defesa em autuações e consultoria tributária com credibilidade e clareza para atrair empresas e empreendedores."
+        },
+        {
+            "id": "advocacia-familia",
+            "title": "Exemplo de site para advogada especialista em direito de família",
+            "image": "/projects/chrome_IHED6iNBHn.jpg",
+            "description": "Site demonstrativo para advogadas especializadas em direito de família — mostrando como apresentar serviços de divórcio, guarda, pensão alimentícia e inventário com acolhimento, profissionalismo e humanidade para conquistar a confiança de quem mais precisa de apoio."
+        },
+        {
+            "id": "advocacia-patrimonial",
+            "title": "Exemplo de site para advocacia em direito patrimonial",
+            "image": "/projects/chrome_ktrOaWZHSD.jpg",
+            "description": "Site demonstrativo para escritórios especializados em direito patrimonial — mostrando como apresentar serviços de proteção de bens, planejamento sucessório, holding familiar e gestão de patrimônio com autoridade e sofisticação para atrair clientes de alto perfil."
+        },
+        {
+            "id": "portal-eventos",
+            "title": "Exemplo de site institucional para portal de eventos",
+            "image": "/projects/chrome_jntT4cYRTD.jpg",
+            "description": "Site demonstrativo para portais de eventos — mostrando como apresentar agenda, venda de ingressos, atração de patrocinadores e divulgação de experiências culturais, corporativas e de entretenimento em uma plataforma moderna e visualmente impactante."
+        },
+        {
+            "id": "marcenaria-premium",
+            "title": "Exemplo de site para marcenaria de alto padrão",
+            "image": "/projects/firefox_K86ObY1fL3.jpg",
+            "description": "Site demonstrativo para marcenarias premium — mostrando como apresentar projetos exclusivos de móveis sob medida, acabamentos sofisticados e portfólio visual que transmite excelência artesanal e conquista clientes que valorizam qualidade acima do preço."
         }
     ],
     "fullstack": [
@@ -88,7 +262,31 @@
             "id": "moniop",
             "title": "MoniOP | Plataforma de Gestão e Performance Comercial",
             "image": "/projects/msedge_hDKBAxUobm.jpg",
-            "description": "MoniOP é um sistema web desenvolvido para gestão de equipes de vendas."
+            "description": "MoniOP é um sistema web desenvolvido para gestão de equipes de vendas, com estrutura hierárquica de acesso (administrador, supervisor e operador) e foco em acompanhamento de desempenho comercial. A plataforma permite controle de metas, geração de relatórios por período, visualização de rankings e aplicação de elementos de gamificação para estimular produtividade e resultado."
+        },
+        {
+            "id": "recructa-facil",
+            "title": "Recructa Fácil | Plataforma Inteligente de Análise de Currículos",
+            "image": "/projects/msedge_LERwmh9VyV.jpg",
+            "description": "Recructa Fácil é um sistema de RH com integração de inteligência artificial para análise e organização de currículos. A plataforma permite upload de arquivos em PDF, classificação automática de candidatos, avaliação de compatibilidade com vagas e apoio estratégico na tomada de decisão para contratação, promoção ou reposicionamento interno."
+        },
+        {
+            "id": "content-hub",
+            "title": "Content Hub | Sistema de Gestão Estratégica para Projetos SEO",
+            "image": "/projects/msedge_iXTMWalixd.jpg",
+            "description": "Content Hub é uma plataforma local desenvolvida para gerenciamento completo de projetos de SEO e blogs de afiliados. O sistema permite organização de clusters, controle de status de conteúdos, categorização estratégica, acompanhamento editorial e integração com automações via n8n, oferecendo controle operacional e visão estrutural sobre ativos digitais."
+        },
+        {
+            "id": "simulador-roi",
+            "title": "Simulador de ROI e Fluxo de Caixa",
+            "image": "/projects/msedge_Sodz87nLIf.jpg",
+            "description": "Calculadora interativa que permite ao usuário simular retorno sobre investimento e projetar fluxo de caixa em tempo real — com entradas personalizadas, gráficos dinâmicos e resultados claros para apoiar decisões financeiras com mais segurança e inteligência."
+        },
+        {
+            "id": "csv-to-markdown",
+            "title": "Conversor de CSV para Markdown",
+            "image": "/projects/msedge_PAUeclnKIi.jpg",
+            "description": "Ferramenta simples e direta que transforma tabelas em CSV em formato Markdown com um clique — ideal para desenvolvedores e redatores que precisam documentar dados rapidamente sem perder tempo com formatação manual."
         }
     ],
     "traffic": [],

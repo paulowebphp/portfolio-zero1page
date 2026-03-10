@@ -217,6 +217,30 @@ function App() {
           </div>
         )}
 
+        {fullstackData.length > 0 && (
+          <div className="fullstack-showcase pt-20">
+            <div className="section-header fullstack-header">
+              <h3>Projetos de <span>Programação</span></h3>
+              <p className="section-subtitle">Full Stack</p>
+              <div className="divider"></div>
+            </div>
+            <div className="conceptual-grid">
+              {fullstackData.map(item => (
+                <div key={item.id} className="conceptual-item">
+                  <div className="image-wrapper shadow-premium">
+                    <img src={item.image} alt={item.title} loading="lazy" />
+                    <div className="image-overlay"><div className="view-badge">Software</div></div>
+                  </div>
+                  <div className="item-content">
+                    <h4 className="item-title">{item.title}</h4>
+                    <p className="item-description">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Seção Comercial */}
         <div className="section-header pricing-header">
           <h3>Investimento & <span>Estratégia</span></h3>
