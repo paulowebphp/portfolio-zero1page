@@ -30,13 +30,13 @@ const Generator = () => {
         const loadInitialData = async () => {
             setInitialLoading(true);
             try {
-                // Load contacts filtrados por esta proposta
+                // Load contacts globais (sem filtro por proposta)
                 const { data: contactsData } = await supabase
                     .from('whatsapp_contatos')
                     .select('*')
-                    .eq('proposta_slug', editSlug)
                     .order('nome');
                 setContacts(contactsData || []);
+
 
                 // If editing, load proposal
                 if (editSlug) {
@@ -115,25 +115,6 @@ const Generator = () => {
                             <label>Título da Proposta (H1)</label>
                             <input name="titulo_proposta" value={formData.titulo_proposta} onChange={handleChange} placeholder="Ex: Máquina de Vendas para João" required />
                         </div>
-                        <div className="form-group full-width">
-                            <label>Atendente WhatsApp (Responsável)</label>
-                            {contacts.length === 0 ? (
-                                <div className="status-msg" style={{ background: 'rgba(245,158,11,0.1)', border: '1px solid rgba(245,158,11,0.25)', color: '#f59e0b' }}>
-                                    <Phone size={16} />
-                                    <span>
-                                        Nenhum contato cadastrado para esta proposta.{' '}
-                                        <Link to={`/admin/proposals/${editSlug}/whatsapp`} style={{ color: '#f59e0b', fontWeight: 700, textDecoration: 'underline' }}>
-                                            Cadastrar na aba WhatsApp →
-                                        </Link>
-                                    </span>
-                                </div>
-                            ) : (
-                                <select name="contato_id" value={formData.contato_id} onChange={handleChange}>
-                                    <option value="">Selecione um contato...</option>
-                                    {contacts.map(c => <option key={c.id} value={c.id}>{c.nome} ({c.numero})</option>)}
-                                </select>
-                            )}
-                        </div>
                     </div>
                 </section>
 
@@ -208,6 +189,29 @@ const Generator = () => {
                             <label>Data de Início</label>
                             <input type="date" name="prazo_inicio" value={formData.prazo_inicio} onChange={handleChange} />
                         </div>
+                    </div>
+                </section>
+
+                <section className="form-section mt-8">
+                    <h3 className="section-title"><Phone size={18} /> Contato WhatsApp</h3>
+                    <div className="form-group">
+                        <label>Responsável pelo Atendimento</label>
+                        <select 
+                            name="contato_id" 
+                            value={formData.contato_id || ''} 
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value="">Selecione um contato...</option>
+                            {contacts.map(c => (
+                                <option key={c.id} value={c.id}>
+                                    {c.nome} ({c.numero})
+                                </option>
+                            ))}
+                        </select>
+                        <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '8px' }}>
+                            Gerencie estes contatos na aba <Link to="/admin/whatsapp" style={{ color: 'var(--accent-color)' }}>WhatsApp</Link> do menu lateral.
+                        </p>
                     </div>
                 </section>
 

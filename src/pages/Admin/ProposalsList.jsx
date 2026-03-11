@@ -71,7 +71,7 @@ const ProposalsList = () => {
                     </div>
                     <button className="btn-save" onClick={() => navigate('/admin/proposals/new')}>
                         <Plus size={18} />
-                        <span>Nova Proposta</span>
+                        Criar Proposta
                     </button>
                 </div>
             </header>

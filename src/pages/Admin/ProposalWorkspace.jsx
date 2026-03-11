@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, useParams, useNavigate, NavLink } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
-import { ArrowLeft, FileText, Phone, Loader2, ExternalLink, Images } from 'lucide-react';
+import { ArrowLeft, FileText, Loader2, ExternalLink, Images } from 'lucide-react';
 
 const ProposalWorkspace = () => {
     const { slug } = useParams();
@@ -64,19 +64,28 @@ const ProposalWorkspace = () => {
                 </button>
 
                 <div className="workspace-title">
-                    <h1>
-                        {proposal.nome || proposal.slug}
-                        <a
-                            href={`/${slug}`}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="workspace-public-link"
-                            title="Ver página pública"
-                        >
-                            <ExternalLink size={14} />
-                        </a>
-                    </h1>
+                    <h1>{proposal.nome || proposal.slug}</h1>
                     <span className="workspace-slug">/{slug}</span>
+                </div>
+
+                <div style={{ marginLeft: 'auto' }}>
+                    <a
+                        href={`/${slug}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-save"
+                        style={{ 
+                            display: 'flex', 
+                            alignItems: 'center', 
+                            gap: '8px', 
+                            textDecoration: 'none',
+                            fontSize: '0.85rem',
+                            padding: '8px 16px'
+                        }}
+                    >
+                        <ExternalLink size={16} />
+                        <span>Ver Site Público</span>
+                    </a>
                 </div>
             </div>
 
@@ -88,13 +97,6 @@ const ProposalWorkspace = () => {
                 >
                     <FileText size={16} />
                     <span>Dados & Valores</span>
-                </NavLink>
-                <NavLink
-                    to={`/admin/proposals/${slug}/whatsapp`}
-                    className={({ isActive }) => `workspace-tab${isActive ? ' active' : ''}`}
-                >
-                    <Phone size={16} />
-                    <span>WhatsApp</span>
                 </NavLink>
                 <NavLink
                     to={`/admin/proposals/${slug}/cases`}

@@ -8,9 +8,8 @@ import Generator from './pages/Admin/Generator.jsx'
 import ProposalsList from './pages/Admin/ProposalsList.jsx'
 import ProposalNew from './pages/Admin/ProposalNew.jsx'
 import ProposalWorkspace from './pages/Admin/ProposalWorkspace.jsx'
-import Settings from './pages/Admin/Settings.jsx'
 import Structurer from './pages/Admin/Structurer.jsx'
-import CasesManager from './pages/Admin/CasesManager.jsx'
+
 import ProposalCases from './pages/Admin/ProposalCases.jsx'
 import WhatsAppManager from './pages/Admin/WhatsAppManager.jsx'
 import Login from './pages/Login.jsx'
@@ -34,7 +33,7 @@ createRoot(document.getElementById('root')).render(
 
           {/* Painel Administrativo Protegido */}
           <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>}>
-            <Route index element={<div>Bem-vindo ao Painel Admin</div>} />
+            <Route index element={<Navigate to="proposals" replace />} />
 
             {/* Lista e criação de propostas */}
             <Route path="proposals" element={<ProposalsList />} />
@@ -43,14 +42,13 @@ createRoot(document.getElementById('root')).render(
             {/* Workspace por proposta */}
             <Route path="proposals/:slug" element={<ProposalWorkspace />}>
               <Route path="details"  element={<Generator />} />
-              <Route path="whatsapp" element={<WhatsAppManager />} />
               <Route path="cases"    element={<ProposalCases />} />
             </Route>
 
             {/* Módulos globais */}
-            <Route path="cases"      element={<CasesManager />} />
+
+            <Route path="whatsapp"   element={<WhatsAppManager />} />
             <Route path="structurer" element={<Structurer />} />
-            <Route path="settings"   element={<Settings />} />
           </Route>
 
           {/* Rotas por slug — ex: /joao-marcos, /20260302_01, etc. */}
