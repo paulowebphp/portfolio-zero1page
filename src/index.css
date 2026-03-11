@@ -401,6 +401,434 @@ body {
   justify-content: center;
 }
 
+/* ==========================================
+   ADMIN NAV — SUB-ITEM (Nova Proposta)
+   ========================================== */
+
+.nav-item-sub {
+  padding-left: 36px;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-top: -4px;
+}
+
+.nav-item-sub:hover {
+  opacity: 1;
+}
+
+/* ==========================================
+   HEADER ACTIONS (pesquisa + botão)
+   ========================================== */
+
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.page-header-text h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.page-header span {
+  color: var(--accent-color);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================
+   SLUG PREVIEW WRAPPER (ProposalNew + Generator)
+   ========================================== */
+
+.slug-preview-wrapper {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.slug-preview-wrapper:focus-within {
+  border-color: var(--accent-color);
+}
+
+.slug-prefix {
+  padding: 12px 10px 12px 16px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border-right: 1px solid var(--glass-border);
+}
+
+.slug-preview-wrapper input {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 12px 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.slug-preview-wrapper input:focus {
+  border: none;
+  outline: none;
+}
+
+.slug-ext-link {
+  padding: 0 12px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.slug-ext-link:hover {
+  color: var(--accent-color);
+}
+
+.form-hint {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.form-error {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #ff4d4d;
+}
+
+/* ==========================================
+   PROPOSAL WORKSPACE
+   ========================================== */
+
+.workspace-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.btn-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  min-height: 44px;
+}
+
+.btn-back:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.workspace-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.workspace-title h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.workspace-public-link {
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.workspace-public-link:hover {
+  color: var(--accent-color);
+}
+
+.workspace-slug {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-family: monospace;
+  margin-top: 2px;
+  display: block;
+}
+
+/* Tabs do workspace */
+.workspace-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid var(--glass-border);
+}
+
+.workspace-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  min-height: 44px;
+}
+
+.workspace-tab:hover {
+  color: #fff;
+}
+
+.workspace-tab.active {
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
+}
+
+.workspace-content {
+  padding-top: 8px;
+}
+
+/* ==========================================
+   FORM EXTRAS (btn-cancel, form-actions)
+   ========================================== */
+
+.btn-cancel {
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+
+.btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.mt-8 { margin-top: 32px; }
+.mt-10 { margin-top: 40px; }
+
+/* SEARCH BAR */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  min-width: 240px;
+}
+
+.search-bar input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+/* Outros botões e links admin */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--glass-border);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: var(--text-secondary);
+}
+
+.btn-icon.edit:hover { background: rgba(0, 112, 243, 0.15); color: var(--accent-color); border-color: rgba(0, 112, 243, 0.3); }
+.btn-icon.delete:hover { background: rgba(255, 77, 77, 0.1); color: #ff4d4d; border-color: rgba(255, 77, 77, 0.2); }
+
+.actions-cell {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.slug-link {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-family: monospace;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.slug-link:hover { text-decoration: underline; }
+
+.truncate-text {
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-muted { color: var(--text-secondary); }
+
+.flex-align {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.p-8 { padding: 32px; }
+.p-12 { padding: 48px; }
+.p-20 { padding: 80px; }
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Form selects */
+.form-group select {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-group select:focus {
+  border-color: var(--accent-color);
+}
+
+.form-group select option {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+/* ==========================================
+   RESPONSIVIDADE ADMIN — workspace e formulários
+   ========================================== */
+
+@media (max-width: 768px) {
+  .workspace-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .workspace-tabs {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .workspace-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .header-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-bar {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .slug-preview-wrapper {
+    flex-wrap: nowrap;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-save,
+  .btn-cancel {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 12px 10px;
+    font-size: 0.85rem;
+  }
+}
+
+
+
 .min-vh-100 {
   min-height: 100vh;
 }
@@ -1107,4 +1535,49 @@ body {
     white-space: normal;
     text-align: center;
   }
+}
+
+/* ── Input com prefixo/sufixo (campos de preço no Generator) ── */
+.input-prefix-wrapper {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.input-prefix-wrapper:focus-within {
+  border-color: var(--accent-color);
+}
+
+.input-prefix-wrapper input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 12px 10px;
+  color: #fff;
+  font-size: 0.95rem;
+  min-width: 0;
+}
+
+.input-prefix,
+.input-suffix {
+  padding: 12px 12px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  user-select: none;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.input-prefix {
+  border-right: 1px solid var(--glass-border);
+}
+
+.input-suffix {
+  border-left: 1px solid var(--glass-border);
 }

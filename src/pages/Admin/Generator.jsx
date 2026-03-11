@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Save, Loader2, CheckCircle, AlertCircle, Info, Calendar } from 'lucide-react';
-import { useSearchParams } from 'react-router-dom';
+import { Save, Loader2, CheckCircle, AlertCircle, Info, Calendar, ExternalLink, Phone } from 'lucide-react';
+import { useParams, Link } from 'react-router-dom';
 
 const Generator = () => {
-    const [searchParams] = useSearchParams();
-    const editSlug = searchParams.get('edit');
+    const { slug: editSlug } = useParams();
 
     const [formData, setFormData] = useState({
         slug: '',
         titulo_proposta: '',
-        mova_principal: 'R$ 24K',
-        mova_avista: 'R$ 22K à vista',
-        performance_range: 'R$ 2K a 15K /mês',
-        trafego_mensal: 'R$ 2.500 /mês',
-        automacao_setup: 'R$ 2.500 (Setup)',
-        automacao_mensal: 'R$ 1.000 /mês',
+        mova_principal: '24K',
+        mova_avista: '22K',
+        performance_range: '2K a 15K',
+        trafego_mensal: '2.500',
+        automacao_setup: '2.500',
+        automacao_mensal: '1.000',
         prazo_tipo: 'static',
         prazo_dias: 7,
         prazo_inicio: new Date().toISOString().split('T')[0],
@@ -31,8 +30,12 @@ const Generator = () => {
         const loadInitialData = async () => {
             setInitialLoading(true);
             try {
-                // Load contacts
-                const { data: contactsData } = await supabase.from('whatsapp_contatos').select('*').order('nome');
+                // Load contacts filtrados por esta proposta
+                const { data: contactsData } = await supabase
+                    .from('whatsapp_contatos')
+                    .select('*')
+                    .eq('proposta_slug', editSlug)
+                    .order('nome');
                 setContacts(contactsData || []);
 
                 // If editing, load proposal
@@ -99,8 +102,14 @@ const Generator = () => {
                     <h3 className="section-title"><Info size={18} /> Identificação</h3>
                     <div className="form-grid">
                         <div className="form-group">
-                            <label>Slug (URL Final: site.com/slug)</label>
-                            <input name="slug" value={formData.slug} onChange={handleChange} placeholder="ex: cliente-advocacia" required disabled={!!editSlug} />
+                            <label>Slug (URL da proposta)</label>
+                            <div className="slug-preview-wrapper">
+                                <span className="slug-prefix">site.com/</span>
+                                <input name="slug" value={formData.slug} readOnly disabled style={{ opacity: 0.7, cursor: 'not-allowed' }} />
+                                <a href={`/${formData.slug}`} target="_blank" rel="noreferrer" className="slug-ext-link" title="Ver página pública">
+                                    <ExternalLink size={14} />
+                                </a>
+                            </div>
                         </div>
                         <div className="form-group">
                             <label>Título da Proposta (H1)</label>
@@ -108,10 +117,22 @@ const Generator = () => {
                         </div>
                         <div className="form-group full-width">
                             <label>Atendente WhatsApp (Responsável)</label>
-                            <select name="contato_id" value={formData.contato_id} onChange={handleChange} required>
-                                <option value="">Selecione um contato...</option>
-                                {contacts.map(c => <option key={c.id} value={c.id}>{c.nome} ({c.numero})</option>)}
-                            </select>
+                            {contacts.length === 0 ? (
+                                <div className="status-msg" style={{ background: 'rgba(245,158,11,0.1)', border: '1px solid rgba(245,158,11,0.25)', color: '#f59e0b' }}>
+                                    <Phone size={16} />
+                                    <span>
+                                        Nenhum contato cadastrado para esta proposta.{' '}
+                                        <Link to={`/admin/proposals/${editSlug}/whatsapp`} style={{ color: '#f59e0b', fontWeight: 700, textDecoration: 'underline' }}>
+                                            Cadastrar na aba WhatsApp →
+                                        </Link>
+                                    </span>
+                                </div>
+                            ) : (
+                                <select name="contato_id" value={formData.contato_id} onChange={handleChange}>
+                                    <option value="">Selecione um contato...</option>
+                                    {contacts.map(c => <option key={c.id} value={c.id}>{c.nome} ({c.numero})</option>)}
+                                </select>
+                            )}
                         </div>
                     </div>
                 </section>
@@ -120,28 +141,51 @@ const Generator = () => {
                     <h3 className="section-title">💰 Valores Comerciais</h3>
                     <div className="form-grid">
                         <div className="form-group">
-                            <label>M.O.V.A - Principal</label>
-                            <input name="mova_principal" value={formData.mova_principal} onChange={handleChange} />
+                            <label>M.O.V.A — Principal</label>
+                            <div className="input-prefix-wrapper">
+                                <span className="input-prefix">R$</span>
+                                <input name="mova_principal" value={formData.mova_principal} onChange={handleChange} placeholder="24K" />
+                            </div>
                         </div>
                         <div className="form-group">
-                            <label>M.O.V.A - À Vista</label>
-                            <input name="mova_avista" value={formData.mova_avista} onChange={handleChange} />
+                            <label>M.O.V.A — À Vista</label>
+                            <div className="input-prefix-wrapper">
+                                <span className="input-prefix">R$</span>
+                                <input name="mova_avista" value={formData.mova_avista} onChange={handleChange} placeholder="22K" />
+                                <span className="input-suffix">à vista</span>
+                            </div>
                         </div>
                         <div className="form-group">
                             <label>Performance (Range)</label>
-                            <input name="performance_range" value={formData.performance_range} onChange={handleChange} />
+                            <div className="input-prefix-wrapper">
+                                <span className="input-prefix">R$</span>
+                                <input name="performance_range" value={formData.performance_range} onChange={handleChange} placeholder="2K a 15K" />
+                                <span className="input-suffix">/mês</span>
+                            </div>
                         </div>
                         <div className="form-group">
                             <label>Tráfego Pago (Mensal)</label>
-                            <input name="trafego_mensal" value={formData.trafego_mensal} onChange={handleChange} />
+                            <div className="input-prefix-wrapper">
+                                <span className="input-prefix">R$</span>
+                                <input name="trafego_mensal" value={formData.trafego_mensal} onChange={handleChange} placeholder="2.500" />
+                                <span className="input-suffix">/mês</span>
+                            </div>
                         </div>
                         <div className="form-group">
                             <label>Automação (Setup)</label>
-                            <input name="automacao_setup" value={formData.automacao_setup} onChange={handleChange} />
+                            <div className="input-prefix-wrapper">
+                                <span className="input-prefix">R$</span>
+                                <input name="automacao_setup" value={formData.automacao_setup} onChange={handleChange} placeholder="2.500" />
+                                <span className="input-suffix">(Setup)</span>
+                            </div>
                         </div>
                         <div className="form-group">
                             <label>Automação (Mensal)</label>
-                            <input name="automacao_mensal" value={formData.automacao_mensal} onChange={handleChange} />
+                            <div className="input-prefix-wrapper">
+                                <span className="input-prefix">+ R$</span>
+                                <input name="automacao_mensal" value={formData.automacao_mensal} onChange={handleChange} placeholder="1.000" />
+                                <span className="input-suffix">/mês</span>
+                            </div>
                         </div>
                     </div>
                 </section>

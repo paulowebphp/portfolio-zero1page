@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
 import { Save, Trash2, Plus, Loader2, CheckCircle, AlertCircle, Phone, User, MessageSquare } from 'lucide-react';
+import { useParams } from 'react-router-dom';
 
 const WhatsAppManager = () => {
+    const { slug: proposta_slug } = useParams();
     const [contacts, setContacts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [actionLoading, setActionLoading] = useState(false);
@@ -17,7 +19,7 @@ const WhatsAppManager = () => {
 
     useEffect(() => {
         fetchContacts();
-    }, []);
+    }, [proposta_slug]);
 
     const fetchContacts = async () => {
         try {
@@ -25,6 +27,7 @@ const WhatsAppManager = () => {
             const { data, error } = await supabase
                 .from('whatsapp_contatos')
                 .select('*')
+                .eq('proposta_slug', proposta_slug)
                 .order('nome');
             if (error) throw error;
             setContacts(data);
@@ -56,7 +59,7 @@ const WhatsAppManager = () => {
             } else {
                 const { error } = await supabase
                     .from('whatsapp_contatos')
-                    .insert([formData]);
+                    .insert([{ ...formData, proposta_slug }]);
                 if (error) throw error;
                 setStatus('success_add');
             }

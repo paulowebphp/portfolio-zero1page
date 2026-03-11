@@ -2,10 +2,48 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ProjectCard from './components/ProjectCard';
 import { supabase } from './lib/supabase';
-import globalAuthority from './data/global_authority.json';
+import globalAuthorityFallback from './data/global_authority.json';
 import portfolioConfig from './data/portfolioConfig';
 import defaultPricing from './data/default/pricing.json';
 import { Clock, Loader2, AlertCircle, Globe } from 'lucide-react';
+
+// Adapta dados do Supabase (cases flat) para o formato esperado pelos componentes
+function adaptCasesFromDB(rows) {
+  const projects   = [];
+  const conceptual = [];
+  const fullstack  = [];
+
+  for (const c of rows) {
+    if (!c.ativo) continue;
+    const images = (c.case_images || []).sort((a, b) => a.ordem - b.ordem);
+    const tags   = (c.case_tags   || []).sort((a, b) => a.ordem - b.ordem).map(t => t.tag);
+
+    if (c.tipo === 'project') {
+      projects.push({
+        id: c.slug,
+        title: c.title,
+        tags,
+        intro: c.intro || '',
+        items: images.map(img => ({ url: img.url, title: img.title || '', description: img.description || '' })),
+      });
+    } else if (c.tipo === 'conceptual') {
+      conceptual.push({
+        id: c.slug,
+        title: c.title,
+        image: images[0]?.url || '',
+        description: c.intro || '',
+      });
+    } else if (c.tipo === 'fullstack') {
+      fullstack.push({
+        id: c.slug,
+        title: c.title,
+        image: images[0]?.url || '',
+        description: c.intro || '',
+      });
+    }
+  }
+  return { projects, conceptual, fullstack, traffic: [], automation: [] };
+}
 
 // Converte os dados estáticos do portfolioConfig para o mesmo formato do Supabase
 function adaptStaticConfig(config, slug) {
@@ -58,10 +96,11 @@ const getSupabaseClient = () => {
 
 function App() {
   const { slug } = useParams();
-  const [proposalData, setProposalData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [proposalData, setProposalData]   = useState(null);
+  const [casesData,    setCasesData]       = useState(null);   // null = carregando
+  const [loading, setLoading]             = useState(true);
+  const [error, setError]                 = useState(null);
+  const [timeLeft, setTimeLeft]           = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   const client = getSupabaseClient();
   const proposalSlug = slug || 'default';
@@ -82,21 +121,30 @@ function App() {
       try {
         setLoading(true);
 
-        // Race: Supabase vs timeout de 5s — evita loading infinito
-        const fetchPromise = client
-          .from('propostas')
-          .select(`*, whatsapp_contatos (*)`)
-          .eq('slug', proposalSlug)
-          .single();
-
-        const timeoutPromise = new Promise((_, reject) =>
+        const timeout = new Promise((_, reject) =>
           setTimeout(() => reject(new Error('timeout')), 5000)
         );
 
-        const { data, error: sbError } = await Promise.race([fetchPromise, timeoutPromise]);
+        // 1. Busca a proposta (sem join)
+        const { data: proposal, error: sbError } = await Promise.race([
+          client.from('propostas').select('*').eq('slug', proposalSlug).single(),
+          timeout
+        ]);
 
         if (sbError) throw sbError;
-        setProposalData(data);
+
+        // 2. Busca o contato WhatsApp separadamente pelo contato_id
+        let contato = null;
+        if (proposal.contato_id) {
+          const { data: contatoData } = await client
+            .from('whatsapp_contatos')
+            .select('*')
+            .eq('id', proposal.contato_id)
+            .single();
+          contato = contatoData;
+        }
+
+        setProposalData({ ...proposal, whatsapp_contatos: contato });
       } catch (err) {
         tryStaticFallback(err);
       } finally {
@@ -105,6 +153,49 @@ function App() {
     }
 
     fetchProposal();
+  }, [proposalSlug]);
+
+  // Fetch cases — primeiro tenta configuração por proposta, depois biblioteca global
+  useEffect(() => {
+    const fetchCases = async () => {
+      try {
+        const timeout = (ms) => new Promise((_, r) => setTimeout(() => r(new Error('timeout')), ms));
+
+        // 1. Verifica se esta proposta tem cases personalizados
+        const propCasesPromise = supabase
+          .from('propostas_cases')
+          .select('case_id, ativo, ordem, cases(*, case_images(*), case_tags(*))')
+          .eq('proposta_slug', proposalSlug)
+          .eq('ativo', true)
+          .order('ordem');
+
+        const { data: propData, error: propErr } = await Promise.race([propCasesPromise, timeout(5000)]);
+
+        if (!propErr && propData?.length) {
+          // Tem configuração por proposta — usa ela
+          const rows = propData.map(pc => pc.cases).filter(Boolean);
+          setCasesData(adaptCasesFromDB(rows));
+          return;
+        }
+
+        // 2. Fallback: busca biblioteca global de cases ativos
+        const { data, error: sbError } = await Promise.race([
+          supabase
+            .from('cases')
+            .select('*, case_images(*), case_tags(*)')
+            .eq('ativo', true)
+            .order('tipo').order('ordem'),
+          timeout(5000)
+        ]);
+
+        if (sbError || !data?.length) throw sbError || new Error('empty');
+        setCasesData(adaptCasesFromDB(data));
+      } catch {
+        // Fallback final: JSON local
+        setCasesData(globalAuthorityFallback);
+      }
+    };
+    if (proposalSlug) fetchCases();
   }, [proposalSlug]);
 
   useEffect(() => {
@@ -158,7 +249,8 @@ function App() {
     );
   }
 
-  const { projects: projectData, conceptual: conceptualData, fullstack: fullstackData, traffic: trafficData, automation: automationData } = globalAuthority;
+  const authority = casesData ?? globalAuthorityFallback;
+  const { projects: projectData, conceptual: conceptualData, fullstack: fullstackData } = authority;
 
   const contact = proposalData.whatsapp_contatos;
   const whatsappUrl = contact ? `https://wa.me/${contact.numero}?text=${encodeURIComponent(contact.mensagem_padrao)}` : '#';
@@ -171,7 +263,7 @@ function App() {
           {contact && (
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="whatsapp-contact">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
-              <span>Fale com {contact.nome}</span>
+              <span>Fale com o Diretor Comercial e Head PR agora!</span>
             </a>
           )}
         </div>
@@ -179,7 +271,7 @@ function App() {
 
       <header className="hero">
         <div className="hero-content">
-          <h2><span>{proposalData.titulo_proposta}</span></h2>
+          <h2><span>Proposta Comercial Exclusiva</span></h2>
           <p>Potencializando sua operação digital com autoridade e tecnologia.</p>
         </div>
       </header>
@@ -259,8 +351,8 @@ function App() {
                     <h4 className="pricing-title">{p?.title || 'M.O.V.A — Máquina Orgânica'}</h4>
                     {p?.description && <p className="pricing-description">{p.description}</p>}
                     <div className="highlight-values">
-                      <p className="main-price">{proposalData.mova_principal}</p>
-                      {proposalData.mova_avista && <p className="special-price">{proposalData.mova_avista}</p>}
+                       <p className="main-price">R$ {proposalData.mova_principal}</p>
+                       {proposalData.mova_avista && <p className="special-price">R$ {proposalData.mova_avista} à vista</p>}
                     </div>
                   </div>
                 </div>
@@ -291,7 +383,7 @@ function App() {
                     <h4 className="pricing-title">{p?.title || 'Aluguel por Performance'}</h4>
                     {p?.description && <p className="pricing-description">{p.description}</p>}
                     <div className="highlight-values">
-                      <p className="main-price">{proposalData.performance_range}</p>
+                       <p className="main-price">R$ {proposalData.performance_range} /mês</p>
                     </div>
                   </div>
                 </div>
@@ -321,7 +413,7 @@ function App() {
                     <h4 className="pricing-title">{p?.title || 'Tráfego Pago'}</h4>
                     {p?.description && <p className="pricing-description">{p.description}</p>}
                     <div className="highlight-values">
-                      <p className="main-price">{proposalData.trafego_mensal}</p>
+                       <p className="main-price">R$ {proposalData.trafego_mensal} /mês</p>
                     </div>
                   </div>
                 </div>
@@ -337,8 +429,8 @@ function App() {
                     <h4 className="pricing-title">{p?.title || 'Automação de Atendimento'}</h4>
                     {p?.description && <p className="pricing-description">{p.description}</p>}
                     <div className="highlight-values">
-                      <p className="main-price">{proposalData.automacao_setup}</p>
-                      {proposalData.automacao_mensal && <p className="special-price">+ {proposalData.automacao_mensal}</p>}
+                       <p className="main-price">R$ {proposalData.automacao_setup} (Setup)</p>
+                       {proposalData.automacao_mensal && <p className="special-price">+ R$ {proposalData.automacao_mensal} /mês</p>}
                     </div>
                   </div>
                 </div>

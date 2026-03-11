@@ -1,5 +1,5 @@
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, FilePlus, ListFilter, Sliders, Settings, Home, Phone, LogOut } from 'lucide-react';
+import { LayoutDashboard, ListFilter, Sliders, Settings, Home, LogOut, FilePlus, Plus, Images } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 const AdminDashboard = () => {
@@ -23,21 +23,24 @@ const AdminDashboard = () => {
                         <LayoutDashboard size={20} />
                         <span>Dashboard</span>
                     </Link>
-                    <Link to="/admin/generator" className="nav-item">
-                        <FilePlus size={20} />
-                        <span>Gerador</span>
-                    </Link>
+
+                    {/* Propostas com botão de nova proposta */}
                     <Link to="/admin/proposals" className="nav-item">
                         <ListFilter size={20} />
                         <span>Propostas</span>
                     </Link>
+                    <Link to="/admin/proposals/new" className="nav-item nav-item-sub">
+                        <Plus size={16} />
+                        <span>Nova Proposta</span>
+                    </Link>
+
+                    <Link to="/admin/cases" className="nav-item">
+                        <Images size={20} />
+                        <span>Cases</span>
+                    </Link>
                     <Link to="/admin/structurer" className="nav-item">
                         <Sliders size={20} />
                         <span>Estruturador</span>
-                    </Link>
-                    <Link to="/admin/whatsapp" className="nav-item">
-                        <Phone size={20} />
-                        <span>WhatsApp</span>
                     </Link>
                     <Link to="/admin/settings" className="nav-item">
                         <Settings size={20} />
@@ -73,17 +76,21 @@ const AdminDashboard = () => {
                     <LayoutDashboard size={20} />
                     <span>Início</span>
                 </Link>
-                <Link to="/admin/generator" className="mobile-nav-item">
-                    <FilePlus size={20} />
-                    <span>Gerador</span>
-                </Link>
                 <Link to="/admin/proposals" className="mobile-nav-item">
                     <ListFilter size={20} />
                     <span>Propostas</span>
                 </Link>
-                <Link to="/admin/whatsapp" className="mobile-nav-item">
-                    <Phone size={20} />
-                    <span>WhatsApp</span>
+                <Link to="/admin/proposals/new" className="mobile-nav-item">
+                    <FilePlus size={20} />
+                    <span>Nova</span>
+                </Link>
+                <Link to="/admin/cases" className="mobile-nav-item">
+                    <Images size={20} />
+                    <span>Cases</span>
+                </Link>
+                <Link to="/admin/structurer" className="mobile-nav-item">
+                    <Sliders size={20} />
+                    <span>Estruturador</span>
                 </Link>
                 <button onClick={handleLogout} className="mobile-nav-item btn-mobile-logout" style={{ background: 'none', border: 'none' }}>
                     <LogOut size={20} />

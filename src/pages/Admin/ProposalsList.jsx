@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Search, Edit, Trash2, ExternalLink, Loader2, Calendar } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Search, Edit, Trash2, ExternalLink, Loader2, Plus } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ProposalsList = () => {
+    const navigate = useNavigate();
     const [proposals, setProposals] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
@@ -50,23 +51,28 @@ const ProposalsList = () => {
 
     const filteredProposals = proposals.filter(p =>
         p.slug.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        p.titulo_proposta.toLowerCase().includes(searchTerm.toLowerCase())
+        (p.titulo_proposta || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (p.nome || '').toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
         <div className="admin-page">
             <header className="page-header">
-                <h1>Painel de <span>Propostas Geradas</span></h1>
+                <h1>Painel de <span>Propostas</span></h1>
                 <div className="header-actions">
                     <div className="search-bar">
                         <Search size={18} />
                         <input
                             type="text"
-                            placeholder="Buscar por slug ou título..."
+                            placeholder="Buscar por nome, slug ou título..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                     </div>
+                    <button className="btn-save" onClick={() => navigate('/admin/proposals/new')}>
+                        <Plus size={18} />
+                        <span>Nova Proposta</span>
+                    </button>
                 </div>
             </header>
 
@@ -80,8 +86,9 @@ const ProposalsList = () => {
                         <thead>
                             <tr>
                                 <th>Data</th>
+                                <th>Nome</th>
                                 <th>Link</th>
-                                <th>Título</th>
+                                <th>Título da Proposta</th>
                                 <th>Atendente</th>
                                 <th>Ações</th>
                             </tr>
@@ -90,9 +97,10 @@ const ProposalsList = () => {
                             {filteredProposals.map(p => (
                                 <tr key={p.id}>
                                     <td className="text-muted">
-                                        <div className="flex-align">
-                                            {new Date(p.created_at).toLocaleDateString()}
-                                        </div>
+                                        {new Date(p.created_at).toLocaleDateString()}
+                                    </td>
+                                    <td>
+                                        <strong>{p.nome || '—'}</strong>
                                     </td>
                                     <td>
                                         <a href={`/${p.slug}`} target="_blank" rel="noreferrer" className="slug-link">
@@ -102,7 +110,7 @@ const ProposalsList = () => {
                                     <td><div className="truncate-text" title={p.titulo_proposta}>{p.titulo_proposta}</div></td>
                                     <td><span className="badge-user">{p.whatsapp_contatos?.nome || '—'}</span></td>
                                     <td className="actions-cell">
-                                        <Link to={`/admin/generator?edit=${p.slug}`} className="btn-icon edit" title="Editar">
+                                        <Link to={`/admin/proposals/${p.slug}/details`} className="btn-icon edit" title="Editar">
                                             <Edit size={18} />
                                         </Link>
                                         <button onClick={() => handleDelete(p.slug)} className="btn-icon delete" title="Excluir">
@@ -113,7 +121,7 @@ const ProposalsList = () => {
                             ))}
                             {filteredProposals.length === 0 && (
                                 <tr>
-                                    <td colSpan="5" className="text-center p-8 text-muted">Nenhuma proposta encontrada.</td>
+                                    <td colSpan="6" className="text-center p-8 text-muted">Nenhuma proposta encontrada.</td>
                                 </tr>
                             )}
                         </tbody>
