@@ -23,17 +23,6 @@ const ProposalNew = () => {
     const [loading, setLoading] = useState(false);
     const [status, setStatus] = useState(null);
     const [slugError, setSlugError] = useState('');
-    const [contacts, setContacts] = useState([]);
-    const [contatoId, setContatoId] = useState('');
-
-    React.useEffect(() => {
-        const fetchContacts = async () => {
-            const { data } = await supabase.from('whatsapp_contatos').select('*').order('nome');
-            setContacts(data || []);
-            if (data?.length === 1) setContatoId(data[0].id);
-        };
-        fetchContacts();
-    }, []);
 
     const handleNomeChange = (e) => {
         const value = e.target.value;
@@ -70,8 +59,7 @@ const ProposalNew = () => {
                 .insert([{
                     nome: nome.trim(),
                     slug: slug.trim(),
-                    titulo_proposta: `Proposta para ${nome.trim()}`,
-                    contato_id: contatoId || null
+                    titulo_proposta: `Proposta para ${nome.trim()}`
                 }]);
 
 
@@ -135,20 +123,6 @@ const ProposalNew = () => {
                     {!slugError && slug && (
                         <small className="form-hint">A proposta ficará acessível em: <strong>/{slug}</strong></small>
                     )}
-                </div>
-                <div className="form-group" style={{ marginTop: '20px' }}>
-                    <label>Contato WhatsApp <span className="text-muted">(Responsável)</span></label>
-                    <select 
-                        value={contatoId} 
-                        onChange={(e) => setContatoId(e.target.value)}
-                        required
-                        style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid var(--glass-border)', background: 'var(--card-bg)', color: '#fff' }}
-                    >
-                        <option value="">Selecione quem vai atender...</option>
-                        {contacts.map(c => (
-                            <option key={c.id} value={c.id}>{c.nome}</option>
-                        ))}
-                    </select>
                 </div>
 
                 <div className="form-actions mt-8">

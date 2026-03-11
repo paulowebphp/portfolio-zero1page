@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Save, Loader2, CheckCircle, AlertCircle, Info, Calendar, ExternalLink, Phone } from 'lucide-react';
+import { Save, Loader2, CheckCircle, AlertCircle, Info, Calendar, ExternalLink, Phone, RefreshCw } from 'lucide-react';
 import { useParams, Link } from 'react-router-dom';
 
 const Generator = () => {
@@ -14,10 +14,7 @@ const Generator = () => {
         performance_range: '2K a 15K',
         trafego_mensal: '2.500',
         automacao_setup: '2.500',
-        automacao_mensal: '1.000',
-        prazo_tipo: 'static',
-        prazo_dias: 7,
-        prazo_inicio: new Date().toISOString().split('T')[0],
+        prazo_inicio: new Date().toISOString(),
         contato_id: ''
     });
 
@@ -25,6 +22,8 @@ const Generator = () => {
     const [loading, setLoading] = useState(false);
     const [initialLoading, setInitialLoading] = useState(false);
     const [status, setStatus] = useState(null);
+    const [originalPrazoInicio, setOriginalPrazoInicio] = useState(null);
+    const [dateChanged, setDateChanged] = useState(false);
 
     useEffect(() => {
         const loadInitialData = async () => {
@@ -47,10 +46,8 @@ const Generator = () => {
                         .single();
 
                     if (proposal) {
-                        setFormData({
-                            ...proposal,
-                            prazo_inicio: proposal.prazo_inicio ? new Date(proposal.prazo_inicio).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]
-                        });
+                        setFormData(proposal);
+                        setOriginalPrazoInicio(proposal.prazo_inicio);
                     }
                 }
             } catch (err) {
@@ -68,20 +65,93 @@ const Generator = () => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
+    const handleDateChange = (e) => {
+        const datePart = e.target.value;
+        setDateChanged(true);
+        setFormData(prev => {
+            // Criar data baseada na entrada local e converter para ISO
+            const [y, m, d] = datePart.split('-').map(Number);
+            const date = new Date(y, m - 1, d, 0, 0, 0); 
+            return { ...prev, prazo_inicio: date.toISOString() };
+        });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setStatus(null);
 
         try {
+            const finalData = { ...formData };
+            
+            // Lógica inteligente de Deadline:
+            // Só iniciamos o cronômetro (setamos o 'now') se:
+            // 1. O tipo for countdown
+            // 2. O valor original no banco NÃO era countdown (ou seja, está ativando agora)
+            // OU se a data de início estava nula/padrão e é o primeiro save.
+            
+            if (formData.prazo_tipo === 'countdown') {
+                const { data: currentDb } = await supabase
+                    .from('propostas')
+                    .select('prazo_tipo, prazo_inicio')
+                    .eq('slug', editSlug)
+                    .single();
+
+                if (currentDb?.prazo_tipo !== 'countdown') {
+                    // Ativando o cronômetro pela primeira vez: Play!
+                    finalData.prazo_inicio = new Date().toISOString();
+                } else if (!dateChanged) {
+                    // Já estava ativo e o usuário não mexeu no calendário: Preserva o tempo que já estava correndo
+                    finalData.prazo_inicio = originalPrazoInicio;
+                }
+            }
+
             const { error } = await supabase
                 .from('propostas')
-                .upsert(formData, { onConflict: 'slug' });
+                .upsert(finalData, { onConflict: 'slug' });
 
             if (error) throw error;
+            
+            setOriginalPrazoInicio(finalData.prazo_inicio);
+            setDateChanged(false);
+            setFormData(finalData);
             setStatus('success');
         } catch (err) {
             console.error('Erro ao salvar proposta:', err);
+            setStatus('error');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleResetTimer = async () => {
+        if (!window.confirm("Deseja resetar as horas/minutos do cronômetro para o horário de agora? (O dia do calendário será mantido)")) return;
+        
+        setLoading(true);
+        try {
+            const now = new Date();
+            // Pegamos a data que está no formulário (calendário)
+            const baseDate = formData.prazo_inicio ? new Date(formData.prazo_inicio) : new Date();
+            
+            // Resetamos apenas as horas, minutos e segundos para o "agora"
+            baseDate.setHours(now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds());
+            
+            const newStart = baseDate.toISOString();
+
+            const { error } = await supabase
+                .from('propostas')
+                .update({ prazo_inicio: newStart })
+                .eq('slug', editSlug);
+
+            if (error) throw error;
+            
+            setOriginalPrazoInicio(newStart);
+            setDateChanged(false);
+            setFormData(prev => ({ ...prev, prazo_inicio: newStart }));
+            setStatus('success');
+            setTimeout(() => setStatus(null), 3000);
+        } catch (err) {
+            console.error('Erro ao resetar contador:', err);
             setStatus('error');
         } finally {
             setLoading(false);
@@ -187,7 +257,12 @@ const Generator = () => {
                         </div>
                         <div className="form-group">
                             <label>Data de Início</label>
-                            <input type="date" name="prazo_inicio" value={formData.prazo_inicio} onChange={handleChange} />
+                            <input 
+                                type="date" 
+                                name="prazo_inicio" 
+                                value={formData.prazo_inicio ? new Date(formData.prazo_inicio).toLocaleDateString('en-CA') : ''} 
+                                onChange={handleDateChange} 
+                            />
                         </div>
                     </div>
                 </section>
@@ -215,11 +290,28 @@ const Generator = () => {
                     </div>
                 </section>
 
-                <div className="form-actions mt-10">
-                    <button type="submit" className="btn-save" disabled={loading}>
+                <div className="form-actions mt-10" style={{ display: 'flex', gap: '12px' }}>
+                    <button type="submit" className="btn-save" disabled={loading} style={{ flex: 1 }}>
                         {loading ? <Loader2 className="animate-spin" size={20} /> : <Save size={20} />}
                         <span>{loading ? 'Salvando...' : 'Salvar Proposta'}</span>
                     </button>
+
+                    {formData.prazo_tipo === 'countdown' && editSlug && (
+                        <button 
+                            type="button" 
+                            onClick={handleResetTimer} 
+                            className="btn-save" 
+                            disabled={loading}
+                            style={{ 
+                                background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+                                borderColor: '#f59e0b',
+                                flex: 1
+                            }}
+                        >
+                            <RefreshCw size={20} className={loading ? 'animate-spin' : ''} />
+                            <span>Resetar Tempo</span>
+                        </button>
+                    )}
                 </div>
 
                 {status === 'success' && <div className="status-msg success mt-6"><CheckCircle size={20} /><span>Proposta salva com sucesso!</span></div>}
