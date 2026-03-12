@@ -163,11 +163,6 @@ const ProposalCases = () => {
     setDirty(true);
   };
 
-  /* ── Remover ── */
-  const removeCase = (caseId) => {
-    setPropCases(prev => prev.filter(x => x.case_id !== caseId));
-    setDirty(true);
-  };
 
   /* ── Salvar ── */
   const handleSave = async () => {
@@ -314,7 +309,6 @@ const ProposalCases = () => {
                 >
                   {pc.ativo ? '✅' : '⬜'}
                 </button>
-                <button className="btn-icon delete" onClick={e => { e.stopPropagation(); removeCase(pc.case_id); }} title="Remover"><Trash2 size={13}/></button>
               </div>
             </div>
           ))}

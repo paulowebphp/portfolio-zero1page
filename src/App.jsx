@@ -98,6 +98,7 @@ function App() {
   const { slug } = useParams();
   const [proposalData, setProposalData]   = useState(null);
   const [casesData,    setCasesData]       = useState(null);   // null = carregando
+  const [sectionsConfig, setSectionsConfig] = useState({}); // { tipo: ativo }
   const [loading, setLoading]             = useState(true);
   const [error, setError]                 = useState(null);
   const [timeLeft, setTimeLeft]           = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -144,6 +145,20 @@ function App() {
           contato = contatoData;
         }
 
+        // 3. Busca configuração de seções
+        const { data: sectionsData } = await client
+          .from('propostas_sections')
+          .select('tipo, ativo')
+          .eq('proposta_slug', proposalSlug);
+
+        const config = { project: true, conceptual: true, fullstack: true, traffic: true, automation: true, depoimentos: true };
+        if (sectionsData) {
+          sectionsData.forEach(s => {
+            config[s.tipo] = s.ativo;
+          });
+        }
+
+        setSectionsConfig(config);
         setProposalData({ ...proposal, whatsapp_contatos: contato });
       } catch (err) {
         tryStaticFallback(err);
@@ -277,15 +292,19 @@ function App() {
       </header>
 
       <main>
-        <div className="section-header">
-          <h3>Cases de <span>Sucesso</span></h3>
-          <div className="divider"></div>
-        </div>
-        <div className="projects-list">
-          {projectData.map(project => <ProjectCard key={project.id} project={project} />)}
-        </div>
+        {sectionsConfig.project !== false && projectData.length > 0 && (
+          <>
+            <div className="section-header">
+              <h3>Cases de <span>Sucesso</span></h3>
+              <div className="divider"></div>
+            </div>
+            <div className="projects-list">
+              {projectData.map(project => <ProjectCard key={project.id} project={project} />)}
+            </div>
+          </>
+        )}
 
-        {conceptualData.length > 0 && (
+        {sectionsConfig.conceptual !== false && conceptualData.length > 0 && (
           <div className="conceptual-showcase pt-20">
             <div className="section-header conceptual-header">
               <h3>Projetos <span>Demonstrativos</span></h3>
@@ -309,7 +328,7 @@ function App() {
           </div>
         )}
 
-        {fullstackData.length > 0 && (
+        {sectionsConfig.fullstack !== false && fullstackData.length > 0 && (
           <div className="fullstack-showcase pt-20">
             <div className="section-header fullstack-header">
               <h3>Projetos de <span>Programação</span></h3>
@@ -343,7 +362,7 @@ function App() {
         <div className="pricing-container">
 
             {/* M.O.V.A */}
-            {proposalData.mova_principal && (() => {
+            {proposalData.exibir_mova !== false && proposalData.mova_principal && (() => {
               const p = defaultPricing.find(x => x.id === 'investment');
               return (
                 <div className="pricing-card highlight-card">
@@ -360,7 +379,7 @@ function App() {
             })()}
 
             {/* Implementação & Crédito — card estático informativo */}
-            {(() => {
+            {proposalData.exibir_mova !== false && (() => {
               const p = defaultPricing.find(x => x.id === 'implementation');
               return p ? (
                 <div className="pricing-card info-card">
@@ -374,7 +393,7 @@ function App() {
             })()}
 
             {/* Aluguel por Performance */}
-            {proposalData.performance_range && (() => {
+            {proposalData.exibir_mova !== false && proposalData.performance_range && (() => {
               const p = defaultPricing.find(x => x.id === 'rental');
               return (
                 <div className="pricing-card">
@@ -391,7 +410,7 @@ function App() {
             })()}
 
             {/* Expansão de Autoridade — card estático informativo */}
-            {(() => {
+            {proposalData.exibir_mova !== false && (() => {
               const p = defaultPricing.find(x => x.id === 'authority');
               return p ? (
                 <div className="pricing-card info-card authority-card">
@@ -405,7 +424,7 @@ function App() {
             })()}
 
             {/* Tráfego Pago */}
-            {proposalData.trafego_mensal && (() => {
+            {proposalData.exibir_trafego !== false && proposalData.trafego_mensal && (() => {
               const p = defaultPricing.find(x => x.id === 'paid-traffic');
               return (
                 <div className="pricing-card">
@@ -421,7 +440,7 @@ function App() {
             })()}
 
             {/* Automação */}
-            {proposalData.automacao_setup && (() => {
+            {proposalData.exibir_automacao !== false && proposalData.automacao_setup && (() => {
               const p = defaultPricing.find(x => x.id === 'automation-sdr');
               return (
                 <div className="pricing-card">

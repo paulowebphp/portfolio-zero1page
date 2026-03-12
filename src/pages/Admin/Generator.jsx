@@ -15,7 +15,10 @@ const Generator = () => {
         trafego_mensal: '2.500',
         automacao_setup: '2.500',
         prazo_inicio: new Date().toISOString(),
-        contato_id: ''
+        contato_id: '',
+        exibir_mova: true,
+        exibir_trafego: true,
+        exibir_automacao: true
     });
 
     const [contacts, setContacts] = useState([]);
@@ -61,8 +64,11 @@ const Generator = () => {
     }, [editSlug]);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        const { name, value, type, checked } = e.target;
+        setFormData(prev => ({ 
+            ...prev, 
+            [name]: type === 'checkbox' ? checked : value 
+        }));
     };
 
     const handleDateChange = (e) => {
@@ -190,52 +196,145 @@ const Generator = () => {
 
                 <section className="form-section mt-8">
                     <h3 className="section-title">💰 Valores Comerciais</h3>
-                    <div className="form-grid">
-                        <div className="form-group">
-                            <label>M.O.V.A — Principal</label>
-                            <div className="input-prefix-wrapper">
-                                <span className="input-prefix">R$</span>
-                                <input name="mova_principal" value={formData.mova_principal} onChange={handleChange} placeholder="24K" />
+                    
+                    {/* Grupo MOVA */}
+                    <div className="commercial-group-wrapper" style={{ 
+                        border: '1px solid var(--glass-border)', 
+                        borderRadius: '12px', 
+                        padding: '20px',
+                        marginBottom: '24px',
+                        background: formData.exibir_mova ? 'rgba(0, 200, 83, 0.03)' : 'rgba(255,255,255,0.01)',
+                        transition: 'all 0.3s ease'
+                    }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                            <h4 style={{ margin: 0, color: '#fff', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#00c853' }}></span>
+                                Módulo MOVA
+                            </h4>
+                            <label className="toggle-switch" style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                                <input 
+                                    type="checkbox" 
+                                    name="exibir_mova" 
+                                    checked={formData.exibir_mova} 
+                                    onChange={handleChange}
+                                    style={{ width: '18px', height: '18px', cursor: 'pointer' }}
+                                />
+                                <span style={{ fontSize: '0.85rem', color: formData.exibir_mova ? '#00c853' : 'var(--text-secondary)' }}>
+                                    {formData.exibir_mova ? 'Exibir no Site' : 'Oculto no Site'}
+                                </span>
+                            </label>
+                        </div>
+                        
+                        <div className="form-grid" style={{ opacity: formData.exibir_mova ? 1 : 0.5, pointerEvents: formData.exibir_mova ? 'all' : 'none' }}>
+                            <div className="form-group">
+                                <label>M.O.V.A — Principal</label>
+                                <div className="input-prefix-wrapper">
+                                    <span className="input-prefix">R$</span>
+                                    <input name="mova_principal" value={formData.mova_principal} onChange={handleChange} placeholder="24K" />
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <label>M.O.V.A — À Vista</label>
+                                <div className="input-prefix-wrapper">
+                                    <span className="input-prefix">R$</span>
+                                    <input name="mova_avista" value={formData.mova_avista} onChange={handleChange} placeholder="22K" />
+                                    <span className="input-suffix">à vista</span>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <label>Performance (Range)</label>
+                                <div className="input-prefix-wrapper">
+                                    <span className="input-prefix">R$</span>
+                                    <input name="performance_range" value={formData.performance_range} onChange={handleChange} placeholder="2K a 15K" />
+                                    <span className="input-suffix">/mês</span>
+                                </div>
                             </div>
                         </div>
-                        <div className="form-group">
-                            <label>M.O.V.A — À Vista</label>
-                            <div className="input-prefix-wrapper">
-                                <span className="input-prefix">R$</span>
-                                <input name="mova_avista" value={formData.mova_avista} onChange={handleChange} placeholder="22K" />
-                                <span className="input-suffix">à vista</span>
+                    </div>
+
+                    {/* Grupo Tráfego */}
+                    <div className="commercial-group-wrapper" style={{ 
+                        border: '1px solid var(--glass-border)', 
+                        borderRadius: '12px', 
+                        padding: '20px',
+                        marginBottom: '24px',
+                        background: formData.exibir_trafego ? 'rgba(245, 158, 11, 0.03)' : 'rgba(255,255,255,0.01)',
+                        transition: 'all 0.3s ease'
+                    }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                            <h4 style={{ margin: 0, color: '#fff', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#f59e0b' }}></span>
+                                Módulo Tráfego Pago
+                            </h4>
+                            <label className="toggle-switch" style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                                <input 
+                                    type="checkbox" 
+                                    name="exibir_trafego" 
+                                    checked={formData.exibir_trafego} 
+                                    onChange={handleChange}
+                                    style={{ width: '18px', height: '18px', cursor: 'pointer' }}
+                                />
+                                <span style={{ fontSize: '0.85rem', color: formData.exibir_trafego ? '#f59e0b' : 'var(--text-secondary)' }}>
+                                    {formData.exibir_trafego ? 'Exibir no Site' : 'Oculto no Site'}
+                                </span>
+                            </label>
+                        </div>
+                        
+                        <div className="form-grid" style={{ opacity: formData.exibir_trafego ? 1 : 0.5, pointerEvents: formData.exibir_trafego ? 'all' : 'none' }}>
+                            <div className="form-group">
+                                <label>Tráfego Pago (Mensal)</label>
+                                <div className="input-prefix-wrapper">
+                                    <span className="input-prefix">R$</span>
+                                    <input name="trafego_mensal" value={formData.trafego_mensal} onChange={handleChange} placeholder="2.500" />
+                                    <span className="input-suffix">/mês</span>
+                                </div>
                             </div>
                         </div>
-                        <div className="form-group">
-                            <label>Performance (Range)</label>
-                            <div className="input-prefix-wrapper">
-                                <span className="input-prefix">R$</span>
-                                <input name="performance_range" value={formData.performance_range} onChange={handleChange} placeholder="2K a 15K" />
-                                <span className="input-suffix">/mês</span>
-                            </div>
+                    </div>
+
+                    {/* Grupo Automação */}
+                    <div className="commercial-group-wrapper" style={{ 
+                        border: '1px solid var(--glass-border)', 
+                        borderRadius: '12px', 
+                        padding: '20px',
+                        background: formData.exibir_automacao ? 'rgba(6, 182, 212, 0.03)' : 'rgba(255,255,255,0.01)',
+                        transition: 'all 0.3s ease'
+                    }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                            <h4 style={{ margin: 0, color: '#fff', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#06b6d4' }}></span>
+                                Módulo Automação
+                            </h4>
+                            <label className="toggle-switch" style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                                <input 
+                                    type="checkbox" 
+                                    name="exibir_automacao" 
+                                    checked={formData.exibir_automacao} 
+                                    onChange={handleChange}
+                                    style={{ width: '18px', height: '18px', cursor: 'pointer' }}
+                                />
+                                <span style={{ fontSize: '0.85rem', color: formData.exibir_automacao ? '#06b6d4' : 'var(--text-secondary)' }}>
+                                    {formData.exibir_automacao ? 'Exibir no Site' : 'Oculto no Site'}
+                                </span>
+                            </label>
                         </div>
-                        <div className="form-group">
-                            <label>Tráfego Pago (Mensal)</label>
-                            <div className="input-prefix-wrapper">
-                                <span className="input-prefix">R$</span>
-                                <input name="trafego_mensal" value={formData.trafego_mensal} onChange={handleChange} placeholder="2.500" />
-                                <span className="input-suffix">/mês</span>
+                        
+                        <div className="form-grid" style={{ opacity: formData.exibir_automacao ? 1 : 0.5, pointerEvents: formData.exibir_automacao ? 'all' : 'none' }}>
+                            <div className="form-group">
+                                <label>Automação (Setup)</label>
+                                <div className="input-prefix-wrapper">
+                                    <span className="input-prefix">R$</span>
+                                    <input name="automacao_setup" value={formData.automacao_setup} onChange={handleChange} placeholder="2.500" />
+                                    <span className="input-suffix">(Setup)</span>
+                                </div>
                             </div>
-                        </div>
-                        <div className="form-group">
-                            <label>Automação (Setup)</label>
-                            <div className="input-prefix-wrapper">
-                                <span className="input-prefix">R$</span>
-                                <input name="automacao_setup" value={formData.automacao_setup} onChange={handleChange} placeholder="2.500" />
-                                <span className="input-suffix">(Setup)</span>
-                            </div>
-                        </div>
-                        <div className="form-group">
-                            <label>Automação (Mensal)</label>
-                            <div className="input-prefix-wrapper">
-                                <span className="input-prefix">+ R$</span>
-                                <input name="automacao_mensal" value={formData.automacao_mensal} onChange={handleChange} placeholder="1.000" />
-                                <span className="input-suffix">/mês</span>
+                            <div className="form-group">
+                                <label>Automação (Mensal)</label>
+                                <div className="input-prefix-wrapper">
+                                    <span className="input-prefix">+ R$</span>
+                                    <input name="automacao_mensal" value={formData.automacao_mensal} onChange={handleChange} placeholder="1.000" />
+                                    <span className="input-suffix">/mês</span>
+                                </div>
                             </div>
                         </div>
                     </div>
