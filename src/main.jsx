@@ -12,6 +12,7 @@ import Structurer from './pages/Admin/Structurer.jsx'
 
 import ProposalCases from './pages/Admin/ProposalCases.jsx'
 import WhatsAppManager from './pages/Admin/WhatsAppManager.jsx'
+import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx'
 import { AuthProvider, useAuth } from './context/AuthContext.jsx'
 import { Navigate } from 'react-router-dom'
@@ -28,7 +29,7 @@ createRoot(document.getElementById('root')).render(
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
 
           {/* Painel Administrativo Protegido */}
