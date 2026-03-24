@@ -180,7 +180,7 @@ const Generator = () => {
                         <div className="form-group">
                             <label>Slug (URL da proposta)</label>
                             <div className="slug-preview-wrapper">
-                                <span className="slug-prefix">site.com/</span>
+                                <span className="slug-prefix">portfolio-zero1page.vercel.app/</span>
                                 <input name="slug" value={formData.slug} readOnly disabled style={{ opacity: 0.7, cursor: 'not-allowed' }} />
                                 <a href={`/${formData.slug}`} target="_blank" rel="noreferrer" className="slug-ext-link" title="Ver página pública">
                                     <ExternalLink size={14} />
