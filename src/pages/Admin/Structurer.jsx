@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../../lib/supabase';
 import {
-  Save, Plus, Trash2, Layout, Database, Zap, Globe, Image,
+  Save, Plus, Trash2, Layout, Database, Zap, Globe, Image as ImageIcon,
   Tag, Users, ChevronDown, ChevronRight, Loader2, CheckCircle,
   AlertCircle, RefreshCw, Upload, X
 } from 'lucide-react';
@@ -21,7 +21,10 @@ const slugify = (str) =>
   str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || `item-${Date.now()}`;
 
-/* ─── Otimização de Imagem (Redimensionamento e Compressão) ─── */
+/* ─── Otimização de Imagem (padroniza 1920×890) ─── */
+const TARGET_W = 1920;
+const TARGET_H = 890;
+
 const optimizeImage = (file) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -31,20 +34,27 @@ const optimizeImage = (file) => {
       img.src = event.target.result;
       img.onload = () => {
         const canvas = document.createElement('canvas');
-        let width = img.width;
-        let height = img.height;
-        const maxW = 1200;
-
-        if (width > maxW) {
-          height = (maxW / width) * height;
-          width = maxW;
-        }
-
-        canvas.width = width;
-        canvas.height = height;
+        canvas.width = TARGET_W;
+        canvas.height = TARGET_H;
         const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, width, height);
-        
+
+        // Crop central (cover) na proporção 1920×890
+        const targetRatio = TARGET_W / TARGET_H;
+        const srcRatio = img.width / img.height;
+        let sx, sy, sw, sh;
+        if (srcRatio > targetRatio) {
+          sh = img.height;
+          sw = img.height * targetRatio;
+          sx = (img.width - sw) / 2;
+          sy = 0;
+        } else {
+          sw = img.width;
+          sh = img.width / targetRatio;
+          sx = 0;
+          sy = (img.height - sh) / 2;
+        }
+        ctx.drawImage(img, sx, sy, sw, sh, 0, 0, TARGET_W, TARGET_H);
+
         canvas.toBlob((blob) => {
           if (blob) {
             const optimizedFile = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", { type: 'image/jpeg' });
@@ -52,7 +62,7 @@ const optimizeImage = (file) => {
           } else {
             reject(new Error('Falha na conversão'));
           }
-        }, 'image/jpeg', 0.82); // Qualidade 82%
+        }, 'image/jpeg', 0.82);
       };
       img.onerror = (e) => reject(e);
     };
@@ -95,7 +105,7 @@ const SubItemEditor = ({ items = [], onChange, color }) => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
       <label style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 600, marginBottom: '4px' }}>
-        <Image size={14} /> Imagens do Case <span style={{ color, fontWeight: 700 }}>(Máx 2)</span>
+        <ImageIcon size={14} /> Imagens do Case <span style={{ color, fontWeight: 700 }}>(Máx 2)</span>
       </label>
       
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px' }}>
@@ -297,10 +307,13 @@ const Structurer = () => {
       // Tags — apaga e recria (apenas projects)
       if (isProject) {
         await supabase.from('case_tags').delete().eq('case_id', caseId);
-        const tags = item.case_tags || [];
+        const tags = (typeof item.case_tags === 'string'
+          ? item.case_tags.split(',')
+          : (item.case_tags || []).map(t => typeof t === 'string' ? t : t.tag)
+        ).map(t => String(t).trim()).filter(Boolean);
         if (tags.length) {
           await supabase.from('case_tags').insert(
-            tags.map((t, i) => ({ case_id: caseId, tag: typeof t === 'string' ? t : t.tag, ordem: i + 1 }))
+            tags.map((tag, i) => ({ case_id: caseId, tag, ordem: i + 1 }))
           );
         }
       }
@@ -405,7 +418,17 @@ const Structurer = () => {
             const fb = feedback[item.id];
             const isProject = activeTab === 'project';
             const imgList = item.case_images || [];
-            const tagList = isProject ? (item.case_tags || []).map(t => typeof t === 'string' ? t : t.tag) : [];
+            const tagChips = isProject
+              ? (typeof item.case_tags === 'string'
+                  ? item.case_tags.split(',')
+                  : (item.case_tags || []).map(t => typeof t === 'string' ? t : t.tag)
+                ).map(t => String(t).trim()).filter(Boolean)
+              : [];
+            const tagInputValue = isProject
+              ? (typeof item.case_tags === 'string'
+                  ? item.case_tags
+                  : (item.case_tags || []).map(t => typeof t === 'string' ? t : t.tag).join(', '))
+              : '';
 
             return (
               <div key={item.id} style={{ background:'rgba(255,255,255,0.03)', border:`1px solid ${isExp ? color + '40' : 'var(--glass-border)'}`, borderRadius:'12px', overflow:'hidden', transition:'border-color 0.2s' }}>
@@ -446,10 +469,15 @@ const Structurer = () => {
                     {isProject && (
                       <div className="form-group" style={{ margin:0 }}>
                         <label style={{ fontSize:'0.9rem', display:'flex', alignItems:'center', gap:'8px', fontWeight: 600, marginBottom: '8px' }}><Tag size={14}/> Tags <span style={{ color:'var(--text-secondary)', fontWeight:400, marginLeft: '4px' }}>(separadas por vírgula)</span></label>
-                        <input value={tagList.join(', ')} placeholder="WordPress, SEO, UX/UI" onChange={e => updateItem(item.id,'case_tags', e.target.value.split(',').map(t=>t.trim()).filter(Boolean))} style={{ margin:0, padding: '14px 18px', fontSize: '1.05rem' }}/>
-                        {tagList.length > 0 && (
+                        <input
+                          value={tagInputValue}
+                          placeholder="WordPress, SEO, UX/UI"
+                          onChange={e => updateItem(item.id, 'case_tags', e.target.value)}
+                          style={{ margin:0, padding: '14px 18px', fontSize: '1.05rem' }}
+                        />
+                        {tagChips.length > 0 && (
                           <div style={{ display:'flex', gap:'6px', flexWrap:'wrap', marginTop:'8px' }}>
-                            {tagList.map((tag,ti) => <span key={ti} style={{ background:`${color}18`, border:`1px solid ${color}40`, color, borderRadius:'20px', padding:'2px 10px', fontSize:'0.75rem', fontWeight:600 }}>{tag}</span>)}
+                            {tagChips.map((tag,ti) => <span key={ti} style={{ background:`${color}18`, border:`1px solid ${color}40`, color, borderRadius:'20px', padding:'2px 10px', fontSize:'0.75rem', fontWeight:600 }}>{tag}</span>)}
                           </div>
                         )}
                       </div>
@@ -458,7 +486,7 @@ const Structurer = () => {
                     {/* Imagem única — abas simples */}
                     {!isProject && (
                       <div className="form-group" style={{ margin:0 }}>
-                        <label style={{ fontSize:'0.9rem', display:'flex', alignItems:'center', gap:'8px', fontWeight: 600, marginBottom: '8px' }}><Image size={14}/> Imagem</label>
+                        <label style={{ fontSize:'0.9rem', display:'flex', alignItems:'center', gap:'8px', fontWeight: 600, marginBottom: '8px' }}><ImageIcon size={14}/> Imagem</label>
                         <div style={{ display:'flex', gap:'8px', marginBottom:'8px' }}>
                           <input 
                             value={imgList[0]?.url||''} 
