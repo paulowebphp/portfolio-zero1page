@@ -19,26 +19,29 @@ const AdminDashboard = () => {
                     <h2>Admin <span>Panel</span></h2>
                 </div>
                 <nav className="sidebar-nav">
+                    <div className="sidebar-section">
+                        <p className="sidebar-section-label">Comercial</p>
+                        <NavLink to="/admin/proposals" end className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
+                            <ListFilter size={20} />
+                            <span>Propostas</span>
+                        </NavLink>
+                        <NavLink to="/admin/proposals/new" className={({ isActive }) => isActive ? 'nav-item nav-item-sub active' : 'nav-item nav-item-sub'}>
+                            <Plus size={16} />
+                            <span>Nova Proposta</span>
+                        </NavLink>
+                    </div>
 
-                    {/* Propostas com botão de nova proposta */}
-                    <NavLink to="/admin/proposals" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
-                        <ListFilter size={20} />
-                        <span>Propostas</span>
-                    </NavLink>
-                    <NavLink to="/admin/proposals/new" className={({ isActive }) => isActive ? 'nav-item nav-item-sub active' : 'nav-item nav-item-sub'}>
-                        <Plus size={16} />
-                        <span>Nova Proposta</span>
-                    </NavLink>
-
-
-                    <NavLink to="/admin/whatsapp" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
-                        <Phone size={20} />
-                        <span>WhatsApp</span>
-                    </NavLink>
-                    <NavLink to="/admin/structurer" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
-                        <Sliders size={20} />
-                        <span>Estruturador</span>
-                    </NavLink>
+                    <div className="sidebar-section">
+                        <p className="sidebar-section-label">Operacional</p>
+                        <NavLink to="/admin/whatsapp" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
+                            <Phone size={20} />
+                            <span>WhatsApp</span>
+                        </NavLink>
+                        <NavLink to="/admin/structurer" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
+                            <Sliders size={20} />
+                            <span>Estruturador</span>
+                        </NavLink>
+                    </div>
                 </nav>
                 <div className="sidebar-footer">
                     <button onClick={handleLogout} className="btn-logout">

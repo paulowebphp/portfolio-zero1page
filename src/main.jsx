@@ -11,6 +11,7 @@ import ProposalWorkspace from './pages/Admin/ProposalWorkspace.jsx'
 import Structurer from './pages/Admin/Structurer.jsx'
 
 import ProposalCases from './pages/Admin/ProposalCases.jsx'
+import ProposalPricingCards from './pages/Admin/ProposalPricingCards.jsx'
 import WhatsAppManager from './pages/Admin/WhatsAppManager.jsx'
 import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx'
@@ -43,6 +44,7 @@ createRoot(document.getElementById('root')).render(
             {/* Workspace por proposta */}
             <Route path="proposals/:slug" element={<ProposalWorkspace />}>
               <Route path="details"  element={<Generator />} />
+              <Route path="pricing"  element={<ProposalPricingCards />} />
               <Route path="cases"    element={<ProposalCases />} />
             </Route>
 

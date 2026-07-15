@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, useParams, useNavigate, NavLink } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
-import { ArrowLeft, FileText, Loader2, ExternalLink, Images } from 'lucide-react';
+import { ArrowLeft, FileText, Loader2, ExternalLink, Images, Layers } from 'lucide-react';
 
 const ProposalWorkspace = () => {
     const { slug } = useParams();
@@ -97,6 +97,13 @@ const ProposalWorkspace = () => {
                 >
                     <FileText size={16} />
                     <span>Dados & Valores</span>
+                </NavLink>
+                <NavLink
+                    to={`/admin/proposals/${slug}/pricing`}
+                    className={({ isActive }) => `workspace-tab${isActive ? ' active' : ''}`}
+                >
+                    <Layers size={16} />
+                    <span>Investimento</span>
                 </NavLink>
                 <NavLink
                     to={`/admin/proposals/${slug}/cases`}

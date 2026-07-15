@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { supabase } from '../../lib/supabase';
+import { seedPricingCardsFromTemplates } from '../../lib/pricingCards';
 import { useNavigate } from 'react-router-dom';
 import { FilePlus, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 
@@ -53,15 +54,16 @@ const ProposalNew = () => {
         setLoading(true);
         setStatus(null);
 
+        const finalSlug = slug.trim();
+
         try {
             const { error } = await supabase
                 .from('propostas')
                 .insert([{
                     nome: nome.trim(),
-                    slug: slug.trim(),
+                    slug: finalSlug,
                     titulo_proposta: `Proposta para ${nome.trim()}`
                 }]);
-
 
             if (error) {
                 if (error.code === '23505') {
@@ -73,9 +75,11 @@ const ProposalNew = () => {
                 return;
             }
 
+            // Copia os 6 cards padrão para esta proposta
+            await seedPricingCardsFromTemplates(finalSlug);
+
             setStatus('success');
-            // Redireciona para o workspace da nova proposta após 800ms
-            setTimeout(() => navigate(`/admin/proposals/${slug.trim()}/details`), 800);
+            setTimeout(() => navigate(`/admin/proposals/${finalSlug}/details`), 800);
         } catch (err) {
             console.error('Erro ao criar proposta:', err);
             setStatus('error');

@@ -7,6 +7,22 @@ import portfolioConfig from './data/portfolioConfig';
 import defaultPricing from './data/default/pricing.json';
 import { Clock, Loader2, AlertCircle, Globe } from 'lucide-react';
 
+// Adapta JSON estático de pricing para o formato dos cards dinâmicos
+function adaptDefaultPricingToCards(json) {
+  return (json || []).map((p, i) => ({
+    id: p.id || `static-${i}`,
+    sobretitulo: p.subtitle || null,
+    titulo: p.title,
+    paragrafos: (p.description || '').split(/\n\n+/).map((t) => t.trim()).filter(Boolean),
+    valor: p.price || null,
+    sub_valor: p.specialPrice || null,
+    is_highlight: !!p.isHighlight,
+    titulo_cor: p.id === 'authority' ? 'amarelo' : 'branco',
+    ordem: i + 1,
+    ativo: true,
+  }));
+}
+
 // Adapta dados do Supabase (cases flat) para o formato esperado pelos componentes
 function adaptCasesFromDB(rows) {
   const projects   = [];
@@ -98,6 +114,7 @@ function App() {
   const { slug } = useParams();
   const [proposalData, setProposalData]   = useState(null);
   const [casesData,    setCasesData]       = useState(null);   // null = carregando
+  const [pricingCards, setPricingCards]   = useState(null);   // null = carregando / fallback
   const [sectionsConfig, setSectionsConfig] = useState({}); // { tipo: ativo }
   const [loading, setLoading]             = useState(true);
   const [error, setError]                 = useState(null);
@@ -113,6 +130,7 @@ function App() {
         const staticConfig = portfolioConfig[proposalSlug];
         if (staticConfig) {
           setProposalData(adaptStaticConfig(staticConfig, proposalSlug));
+          setPricingCards(adaptDefaultPricingToCards(staticConfig.pricing || defaultPricing));
         } else {
           console.error('Proposta não encontrada:', err);
           setError(err?.message ?? 'Proposta não encontrada.');
@@ -168,6 +186,37 @@ function App() {
     }
 
     fetchProposal();
+  }, [proposalSlug]);
+
+  // Cards de Investimento — por proposta, com fallback para pricing.json
+  useEffect(() => {
+    if (!proposalSlug) return;
+
+    const fetchPricingCards = async () => {
+      try {
+        const timeout = (ms) => new Promise((_, r) => setTimeout(() => r(new Error('timeout')), ms));
+        const { data, error: sbError } = await Promise.race([
+          supabase
+            .from('propostas_pricing_cards')
+            .select('*')
+            .eq('proposta_slug', proposalSlug)
+            .eq('ativo', true)
+            .order('ordem'),
+          timeout(5000),
+        ]);
+
+        if (sbError || !data?.length) throw sbError || new Error('empty');
+
+        setPricingCards(data.map((c) => ({
+          ...c,
+          paragrafos: Array.isArray(c.paragrafos) ? c.paragrafos : [],
+        })));
+      } catch {
+        setPricingCards(adaptDefaultPricingToCards(defaultPricing));
+      }
+    };
+
+    fetchPricingCards();
   }, [proposalSlug]);
 
   // Fetch cases — primeiro tenta configuração por proposta, depois biblioteca global
@@ -360,101 +409,41 @@ function App() {
         </div>
 
         <div className="pricing-container">
+          {(pricingCards || adaptDefaultPricingToCards(defaultPricing)).map((card) => {
+            const hasValues = !!(card.valor || card.sub_valor);
+            const titleGold = card.titulo_cor === 'amarelo';
+            const cardClass = [
+              'pricing-card',
+              card.is_highlight ? 'highlight-card' : '',
+              !hasValues ? 'info-card' : '',
+              titleGold ? 'title-gold' : '',
+            ].filter(Boolean).join(' ');
 
-            {/* M.O.V.A */}
-            {proposalData.exibir_mova !== false && proposalData.mova_principal && (() => {
-              const p = defaultPricing.find(x => x.id === 'investment');
-              return (
-                <div className="pricing-card highlight-card">
-                  <div className="pricing-content">
-                    <h4 className="pricing-title">{p?.title || 'M.O.V.A — Máquina Orgânica'}</h4>
-                    {p?.description && <p className="pricing-description">{p.description}</p>}
+            return (
+              <div key={card.id || card.ordem} className={cardClass}>
+                <div className="pricing-content">
+                  {card.sobretitulo && (
+                    <p className="pricing-subtitle-tag">{card.sobretitulo}</p>
+                  )}
+                  <h4 className="pricing-title">{card.titulo}</h4>
+                  {(card.paragrafos || []).map((texto, i) => (
+                    <p
+                      key={i}
+                      className={`pricing-description${titleGold ? ' authority-description' : ''}`}
+                    >
+                      {texto}
+                    </p>
+                  ))}
+                  {hasValues && (
                     <div className="highlight-values">
-                       <p className="main-price">R$ {proposalData.mova_principal}</p>
-                       {proposalData.mova_avista && <p className="special-price">R$ {proposalData.mova_avista} à vista</p>}
+                      {card.valor && <p className="main-price">{card.valor}</p>}
+                      {card.sub_valor && <p className="special-price">{card.sub_valor}</p>}
                     </div>
-                  </div>
+                  )}
                 </div>
-              );
-            })()}
-
-            {/* Implementação & Crédito — card estático informativo */}
-            {proposalData.exibir_mova !== false && (() => {
-              const p = defaultPricing.find(x => x.id === 'implementation');
-              return p ? (
-                <div className="pricing-card info-card">
-                  <div className="pricing-content">
-                    {p.subtitle && <p className="pricing-subtitle-tag">{p.subtitle}</p>}
-                    <h4 className="pricing-title">{p.title}</h4>
-                    <p className="pricing-description">{p.description}</p>
-                  </div>
-                </div>
-              ) : null;
-            })()}
-
-            {/* Aluguel por Performance */}
-            {proposalData.exibir_mova !== false && proposalData.performance_range && (() => {
-              const p = defaultPricing.find(x => x.id === 'rental');
-              return (
-                <div className="pricing-card">
-                  <div className="pricing-content">
-                    {p?.subtitle && <p className="pricing-subtitle-tag">{p.subtitle}</p>}
-                    <h4 className="pricing-title">{p?.title || 'Aluguel por Performance'}</h4>
-                    {p?.description && <p className="pricing-description">{p.description}</p>}
-                    <div className="highlight-values">
-                       <p className="main-price">R$ {proposalData.performance_range} /mês</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })()}
-
-            {/* Expansão de Autoridade — card estático informativo */}
-            {proposalData.exibir_mova !== false && (() => {
-              const p = defaultPricing.find(x => x.id === 'authority');
-              return p ? (
-                <div className="pricing-card info-card authority-card">
-                  <div className="pricing-content">
-                    {p.subtitle && <p className="pricing-subtitle-tag">{p.subtitle}</p>}
-                    <h4 className="pricing-title">{p.title}</h4>
-                    <p className="pricing-description authority-description">{p.description}</p>
-                  </div>
-                </div>
-              ) : null;
-            })()}
-
-            {/* Tráfego Pago */}
-            {proposalData.exibir_trafego !== false && proposalData.trafego_mensal && (() => {
-              const p = defaultPricing.find(x => x.id === 'paid-traffic');
-              return (
-                <div className="pricing-card">
-                  <div className="pricing-content">
-                    <h4 className="pricing-title">{p?.title || 'Tráfego Pago'}</h4>
-                    {p?.description && <p className="pricing-description">{p.description}</p>}
-                    <div className="highlight-values">
-                       <p className="main-price">R$ {proposalData.trafego_mensal} /mês</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })()}
-
-            {/* Automação */}
-            {proposalData.exibir_automacao !== false && proposalData.automacao_setup && (() => {
-              const p = defaultPricing.find(x => x.id === 'automation-sdr');
-              return (
-                <div className="pricing-card">
-                  <div className="pricing-content">
-                    <h4 className="pricing-title">{p?.title || 'Automação de Atendimento'}</h4>
-                    {p?.description && <p className="pricing-description">{p.description}</p>}
-                    <div className="highlight-values">
-                       <p className="main-price">R$ {proposalData.automacao_setup} (Setup)</p>
-                       {proposalData.automacao_mensal && <p className="special-price">+ R$ {proposalData.automacao_mensal} /mês</p>}
-                    </div>
-                  </div>
-                </div>
-              );
-            })()}
+              </div>
+            );
+          })}
 
           <div className="pricing-footer-note">
             <Clock size={32} />
